@@ -1,0 +1,15 @@
+---
+import PostLayout from "@/layouts/PostLayout.astro";
+import { getData } from "@/pages/api/dataFetch";
+type PostData = {
+  htmlContent?: string;
+  [key: string]: any;
+};
+
+const data = getData("post") as PostData;
+ 
+---
+
+<PostLayout data={data}>
+	<div set:html={data?.htmlContent} />
+</PostLayout>

@@ -1,0 +1,26 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import AboutSection from "@/components/sections/About.astro";
+import Container from "@/components/primitives/Container.astro"
+import { getData } from "./api/dataFetch";
+
+type AboutPageData = {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    content?: string;
+  };
+};
+
+const data = getData("about") as Partial<AboutPageData>;
+
+---
+<PageLayout data={data}>  
+  <Container>
+      <AboutSection 
+      title={data?.content?.title} 
+      subtitle={data?.content?.subtitle} 
+      content={data?.content?.content} 
+      />
+    </Container>
+</PageLayout>

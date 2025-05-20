@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+import PostLayout from "@/layouts/PostLayout.astro";
+import { getCollectionStaticPaths } from "@/lib/collection-helpers";
+import { getPosts } from "@/lib/posts";
+import { firestore } from "@/lib/firebase/server";
+console.log("Competitions chala!!!!!!!!!!!");
+
+export async function getStaticPaths() {
+  const snapshot = await firestore.collection("posts").get();
+
+  return snapshot.docs.map((doc) => ({
+    params: { slug: doc.data().slug },
+    props: { post: doc.data() },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<html>
+  <head>
+    <title>{post.title}</title>
+  </head>
+  <body>
+    <h1>{post.title}</h1>
+    <p>{post.date}</p>
+    <article>{post.body}</article>
+  </body>
+</html>

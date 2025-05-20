@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import Container from "@/components/primitives/Container.astro";
+import Link from "@/components/primitives/Link.astro";
+import Prose from "@/components/primitives/Prose.astro";
+import Share from "@/components/primitives/Share.astro";
+import Title from "@/components/primitives/Title.astro";
+import { loadVideo } from "@/lib/asset-helpers";
+import { Icon } from "astro-icon/components";
+import { defaultLocale } from "site";
+import BaseLayout from "./BaseLayout.astro";
+
+type Props = {
+	data: any
+};
+
+const currentLocale = Astro.currentLocale;
+
+interface WorkLayoutLocale {
+	visitProject: string;
+}
+
+interface ComponentLocales {
+	[key: string]: WorkLayoutLocale;
+}
+
+const componentLocales: ComponentLocales = {
+	it: {
+		visitProject: "Visita progetto",
+	},
+	en: {
+		visitProject: "Visit project",
+	},
+};
+
+const l = componentLocales[currentLocale ?? defaultLocale];
+
+const { data } = Astro.props;
+
+const videoSrc = data?.video
+	? await loadVideo(data.video)
+	: null;
+---
+
+<BaseLayout>
+	<section class="py-32 md:py-56">
+		<Container>
+			<div class="text-center">
+				<Title level={1}>{data.title}</Title>
+				<p class="mx-auto max-w-2xl pt-8 text-base text-slate-500">
+					<em>{data?.description}</em>
+				</p>
+				{
+					data.link && (
+						<Link
+							href={data.link}
+							target="_blank"
+							class="mt-10"
+							style="outline"
+						>
+							{l.visitProject}
+							<Icon
+								name="iconamoon:arrow-top-right-1-thin"
+								class="inline-block w-6 h-6 ml-2"
+							/>
+						</Link>
+					)
+				}
+			</div>
+			<div class="flex w-full flex-col items-center justify-center pt-10">
+				{
+					"video" in data &&
+					data?.video &&
+					videoSrc ? (
+						<video autoplay loop muted playsinline>
+							<source src={videoSrc} />
+							Your browser does not support the video tag.
+						</video>
+					) : (
+						"cover" in data &&
+						data?.cover && (
+							<Image
+								class="w-full rounded-4xl lg:w-auto lg:min-w-[50rem] lg:rounded-5xl"
+								src={data?.cover}
+								alt={`Cover image for ${data?.title}`}
+								inferSize={true}
+							/>
+						)
+					)
+				}
+				<Prose><slot /></Prose>
+				<!-- <div
+					class:list={[
+						"prose mx-auto w-full max-w-3xl pt-12 text-lg text-slate-900 prose-headings:font-normal prose-headings:tracking-tighter prose-headings:text-black prose-a:text-slate-500 hover:prose-a:text-black prose-blockquote:border-l-slate-950 prose-blockquote:text-slate-500 prose-code:text-black prose-pre:rounded-3xl prose-li:marker:text-slate-500"
+					]}>
+					<div set:html={data.htmlContent} />
+				</div>
+				<div class="mx-auto w-full max-w-3xl pt-20">
+					<Share />
+				</div> -->
+			</div>
+		</Container>
+	</section>
+</BaseLayout>

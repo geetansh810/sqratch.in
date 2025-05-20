@@ -1,0 +1,44 @@
+{
+    "title": "Homepage",
+    "subtitle": "Homepage",
+    "type": "informational",
+    "lastUpdateDate": "2024-03-09",
+    "hideTitle": true,
+    "seo": {
+        "title": "SQRATCH",
+        "description": "Company excels in creating fast, user-friendly websites with a focus on aesthetic design and SEO optimization, ensuring a standout online presence",
+        "author": "SQRATCH"
+    },
+    "hero": {
+        "title": "We bring your most majestic visions to <b>life</b>",
+        "subtitle": "Community that encourage and promote excellence in architecture on a global scale. <span class='text-neutral-400'>Contact us for a free consultation.</span>",
+        "buttons": [
+            {
+                "title": "Contact",
+                "href": "/contact",
+                "style": "button",
+                "icon": "iconamoon:arrow-top-right-1-thin"
+            }
+        ]
+    },
+    "services":{
+        "title": "We leverage our extensive design and technology expertise to <span class='text-neutral-400'>create leading brands and exceptional digital experiences.</span>",
+        "services": [
+            {
+                "title": "Branding",
+                "description": "We connect brand and UX, creating consistent digital identities across all channels with strategic guidance to ensure seamless brand representation.",
+                "icon": "/src/assets/pages/homepage/marketing-service.png"
+            },
+            {
+                "title": "Digital Solutions",
+                "description": "We create memorable enterprise and consumer products, ensuring exceptional user experiences and providing complete design systems for easy iteration.",
+                "icon": "/src/assets/pages/homepage/socialmedia-service.png"
+            },
+            {
+                "title": "Media for payment",
+                "description": "We design impactful advertising campaigns, ensuring exceptional reach and engagement, and providing comprehensive strategies for seamless execution.",
+                "icon": "/src/assets/pages/homepage/paidmedia-service.png"
+            }
+        ]
+    }
+}

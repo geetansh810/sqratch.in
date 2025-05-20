@@ -1,0 +1,22 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import CompetitionSection from "@/components/sections/Competition.astro";
+import Container from "@/components/primitives/Container.astro"
+import { getData } from "./api/dataFetch";
+import Banner from "@/components/sections/Banner.astro";
+
+const data = getData("competitions");
+---
+<PageLayout data={data}>  
+    <Container>
+        <Banner
+            title={data?.banner?.title}
+            subtitle={data?.banner?.subtitle}
+            sponsorLogo = {data.banner.sponsorLogo}
+            sponsorLogo = {data.banner.sponsorLogo}
+            backgroundImage = {data.banner.backgroundImage}
+            cta={{ text: data.banner.cta.text, href: data.banner.cta.href }}
+        />
+        <CompetitionSection data={data?.content}/>
+    </Container>
+</PageLayout>

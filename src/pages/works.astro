@@ -1,0 +1,17 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import WorksSection from "@/components/sections/Works.astro";
+import Container from "@/components/primitives/Container.astro"
+import { getData } from "./api/dataFetch";
+
+type WorksPageData = {
+  content?: []; // Replace `any` with a more specific type if available
+};
+
+const data = getData("works") as WorksPageData;
+---
+<PageLayout data={data}>  
+    <Container>
+        <WorksSection data={data?.content}/>
+    </Container>
+</PageLayout>

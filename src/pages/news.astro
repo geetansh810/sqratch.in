@@ -1,0 +1,13 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import NewsSection from "@/components/sections/News.astro";
+import Container from "@/components/primitives/Container.astro"
+import { getData } from "./api/dataFetch";
+
+const data = getData("news");
+---
+<PageLayout data={data}>  
+    <Container>
+        <NewsSection data={data?.content}/>
+    </Container>
+</PageLayout>

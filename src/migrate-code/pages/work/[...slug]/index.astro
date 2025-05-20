@@ -1,0 +1,9 @@
+---
+import WorkLayout from "@/layouts/WorkLayout.astro";
+import { getData } from "@/pages/api/dataFetch";
+
+const data = getData("work")
+---
+
+<WorkLayout data={data}>
+</WorkLayout>

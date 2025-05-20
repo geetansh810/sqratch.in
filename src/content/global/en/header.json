@@ -1,0 +1,32 @@
+{
+  "logo": {
+    "imagePath": "/src/assets/global/navigation/logo.svg"
+  },
+  "pages": [
+    {
+      "title": "Home",
+      "link": "/"
+    },
+    {
+      "title": "About",
+      "link": "/about"
+    },
+    {
+      "title": "Competitions",
+      "link": "/competition"
+    },
+    {
+      "title": "Works",
+      "link": "/works"
+    },
+    {
+      "title": "Blogs",
+      "link": "/news"
+    },
+    {
+      "title": "Contacts",
+      "link": "/contact"
+    }
+  ],
+  "actions": []
+}

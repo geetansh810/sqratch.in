@@ -1,0 +1,170 @@
+---
+const {
+  title = "HAMBURG OPEN",
+  subtitle = "MEET G&L IN HALL 6, STAND 211",
+  sponsorLogo = "https://upload.wikimedia.org/wikipedia/commons/6/67/Hamburg-logo.svg",
+  sponsorName = "G&L Broadcast",
+  backgroundImage = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+  cta = { text: "Apply Now", href: "#" },
+  eventDate = "2025-07-01T09:00:00",
+  bannerLink = "/event/hamburg-open"
+} = Astro.props;
+---
+
+<style>
+.flip-clock {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  transform: scale(0.85); /* scale down slightly */
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: monospace;
+}
+
+.num {
+  position: relative;
+  background: linear-gradient(to bottom, #000 0%, #111 50%, #686868 100%);
+  color: #f0f0f0;
+  font-size: 2rem;
+  line-height: 3rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.num::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #222;
+  opacity: 0.4;
+}
+
+.label {
+  font-size: 0.65rem;
+  margin-top: 0.25rem;
+  color: #ccc;
+  letter-spacing: 0.05em;
+}
+
+/* Flip animation */
+.num.flip {
+  animation: flipFade 0.6s;
+}
+
+@keyframes flipFade {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateX(90deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+</style>
+
+  <section
+    class="block group relative mb-10 w-full min-h-[75vh] text-white bg-cover bg-center transition-all duration-500 transform hover:scale-[1.01] hover:shadow-xl rounded-2xl"
+    style={`background-image: url('${backgroundImage}')`}
+    data-event-date={eventDate}
+  >
+    <!-- <div class="absolute inset-0 bg-[#012534]/90 backdrop-blur-sm rounded-2xl"></div> -->
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 flex flex-col justify-between h-full">
+      
+      <!-- Countdown top-right -->
+      <div class="flex justify-end">
+        <!-- <div class="bg-white/10 px-4 py-2 rounded backdrop-blur-md text-sm"> -->
+        <div class="flip-clock" id="flip-clock">
+        <div class="time-box"><div class="num" id="days">00</div><div class="label">DAYS</div></div>
+        <div class="time-box"><div class="num" id="hours">00</div><div class="label">HOURS</div></div>
+        <div class="time-box"><div class="num" id="minutes">00</div><div class="label">MINUTES</div></div>
+        <div class="time-box"><div class="num" id="seconds">00</div><div class="label">SECONDS</div></div>
+        </div>
+        <!-- </div> -->
+      </div>
+
+      <!-- Main Content -->
+      <!-- <div class="mt-10 text-left max-w-2xl">
+        <p class="text-orange-400 text-lg font-semibold mb-3 tracking-wide animate-pulse">{subtitle}</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6">{title}</h1>
+        <a
+          href={cta.href}
+          class="inline-block px-6 py-3 border border-white rounded hover:bg-white hover:text-black transition-all duration-300 bg-white/10 backdrop-blur-sm"
+          onclick="event.stopPropagation()"
+        >
+          {cta.text}
+        </a>
+      </div> -->
+
+      <!-- Sponsor bottom -->
+      <div class="mt-96 flex justify-center lg:justify-end">
+        <div class="flex flex-col items-center text-center">
+          <!-- <img
+            src={sponsorLogo}
+            alt="Sponsor Logo"
+            class="h-20 w-auto grayscale hover:grayscale-0 transition duration-300"
+          />
+          <p class="text-sm uppercase tracking-widest text-gray-200 mt-2">{sponsorName}</p> -->
+                  <a
+          href={cta.href}
+          class="inline-block px-24 py-3 border border-white rounded hover:bg-white hover:text-black transition-all duration-300 bg-white/10 backdrop-blur-sm"
+          onclick="event.stopPropagation()"
+        >
+          {cta.text}
+        </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script is:browser>
+  const section = document.querySelector("section[data-event-date]");
+  const dateString = section?.getAttribute("data-event-date");
+  const eventDate = new Date(dateString).getTime();
+
+  const pad = (n) => String(n).padStart(2, '0');
+  const flip = (el, newVal) => {
+    if (el.textContent !== newVal) {
+      el.textContent = newVal;
+      el.classList.remove('flip');
+      void el.offsetWidth; // force reflow
+      el.classList.add('flip');
+    }
+  };
+
+  const updateCountdown = () => {
+    const eventDate = new Date("2025-07-01T09:00:00").getTime();
+    const now = new Date().getTime();
+    const gap = eventDate - now;
+
+    const days = pad(Math.floor(gap / (1000 * 60 * 60 * 24)));
+    const hours = pad(Math.floor((gap / (1000 * 60 * 60)) % 24));
+    const minutes = pad(Math.floor((gap / (1000 * 60)) % 60));
+    const seconds = pad(Math.floor((gap / 1000) % 60));
+
+    flip(document.getElementById("days"), days);
+    flip(document.getElementById("hours"), hours);
+    flip(document.getElementById("minutes"), minutes);
+    flip(document.getElementById("seconds"), seconds);
+  };
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>

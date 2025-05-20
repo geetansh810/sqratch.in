@@ -1,0 +1,29 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import CompetitionPreview from "@/components/sections/CompetitionPreview.astro";
+
+const currentLocale = Astro.currentLocale;
+
+const {data} = Astro.props;
+
+// const allPosts = data
+// 	.map((post) => {
+// 		const [lang, ...slug] = post.slug.split("/");
+// 		return {
+// 			...post,
+// 			lang: lang,
+// 			slug: post.slug.startsWith("/") ? post.slug : `/${post.slug}`,
+// 		};
+// 	})
+// 	.filter((post) => post.lang === currentLocale && !post.data.hidden)
+// 	.sort(
+// 		(a, b) =>
+// 			a.data.lastUpdateDate.getTime() - b.data.lastUpdateDate.getTime(),
+// 	) as CollectionEntry<"posts">[];
+---
+
+<div
+	class="gap-x-[1.88rem] text-sm font-medium auto-cols-fr grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 grid-rows-[auto] gap-y-10 grid pb-40"
+>
+	{data.map((post) => <CompetitionPreview {post} />)}
+</div>
