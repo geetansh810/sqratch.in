@@ -3,6 +3,8 @@ import PageLayout from "@/layouts/PageLayout.astro";
 import AboutSection from "@/components/sections/About.astro";
 import Container from "@/components/primitives/Container.astro"
 import { getData } from "./api/dataFetch";
+import { getAboutData } from "../lib/appwrite/client";
+
 
 type AboutPageData = {
   content?: {
@@ -13,6 +15,13 @@ type AboutPageData = {
 };
 
 const data = getData("about") as Partial<AboutPageData>;
+
+try {
+  await getAboutData()
+} catch (error) {
+  console.log(error);
+  
+}
 
 ---
 <PageLayout data={data}>  

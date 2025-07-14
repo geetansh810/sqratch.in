@@ -3,17 +3,29 @@ import promoVideo from "@/assets/pages/homepage/cityscp.mp4";
 // https://codepen.io/zank/pen/zYQqygJ
 // https://whatamesh.vercel.app/
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 
 const { class: className } = Astro.props;
+import rightBanner from "@/assets/pages/homepage/sqratch-hero-right.png";
+//const rightBanner = "https://micronatio	n.co.in/wp-content/uploads/2025/05/ChatGPT-Image-May-16-2025-01_37_30-AM-683x1024.png"
+
 ---
 
 <div class="relative">	
 	<canvas id="blob" class:list={["touch:pointer-events-none", className]}
 	></canvas>
-	<video id="video-blob" autoplay loop muted controls>
+	<!-- <video id="video-blob" autoplay loop muted controls>
 		<source src={promoVideo} />
 		Your browser does not support the video tag.
-	</video>
+	</video> -->
+	<div id="video-blob" class="absolute top-0 right-0">
+		<Image
+			src={rightBanner}
+			width={500}
+			height={500}
+			alt="Right Banner"
+			class="hidden lg:block"
+		/>
 	<div id="blob-cursor-follower" class="follower">
 		<Icon name="mdi:play-circle" size={100} />
 	</div>

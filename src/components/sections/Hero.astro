@@ -3,23 +3,26 @@ import type { ButtonProps } from "@/components/primitives/Button.astro";
 import Container from "@/components/primitives/Container.astro";
 import Link from "@/components/primitives/Link.astro";
 import Blob from "@/components/sections/Blob.astro";
+import { Image } from "astro:assets";
 
 interface Props {
 	title: string;
 	subtitle: string;
-	buttons?: ButtonProps[];
+	buttons?: { title: string; href: string; style: string; icon: string; }[];
 }
 
-const defaultButtons: ButtonProps[] = [
-	{
-		title: "Contattaci",
-		href: "/contact",
-		style: "button",
-		icon: "iconamoon:arrow-top-right-1-thin",
-	},
-];
+// const defaultButtons: ButtonProps[] = [
+// 	{
+// 		title: "Contattaci",
+// 		href: "/contact",
+// 		style: "button",
+// 		icon: "iconamoon:arrow-top-right-1-thin",
+// 	},
+// ];
 
-const { title, subtitle, buttons = defaultButtons } = Astro.props;
+const { title, subtitle, buttons } = Astro.props;
+
+const rightBanner = "https://micronation.co.in/wp-content/uploads/2025/05/ChatGPT-Image-May-16-2025-01_37_30-AM-683x1024.png"
 ---
 
 <div
@@ -36,19 +39,19 @@ const { title, subtitle, buttons = defaultButtons } = Astro.props;
 				>
 					<h1
 						data-hero-reveal
-						class="text-4xl md:text-7xl leading-tight my-3 mx-0"
+						class="text-blue-primary nova-font text-4xl md:text-6xl leading-tight my-0 mx-0"
 						set:html={title}
 					/>
 					<div class="lg:mt-20">
 						<div>
 							<p
 								data-hero-reveal
-								class="text-3xl font-semibold mb-3"
+								class="text-blue-primary text-3xl font-semibold mb-0"
 								set:html={subtitle}
 							/>
 							<div class="mt-10 text-white">
 								{
-									buttons.map(
+									buttons?.map(
 										({ title, href, style, icon }) => (
 											<Link
 												data-hero-reveal
@@ -73,6 +76,13 @@ const { title, subtitle, buttons = defaultButtons } = Astro.props;
 				</div>
 				<div class="justify-self-center col-span-1 row-span-1">
 					<Blob class="xl:pl-32" />
+					 
+					<!-- <Image
+					class="mt-12 w-full rounded-4xl lg:w-auto lg:min-w-[50rem] lg:rounded-5xl"
+					src={rightBanner}
+					alt={`Cover image`}
+					inferSize={true}
+					/> -->
 				</div>
 			</div>
 		</div>

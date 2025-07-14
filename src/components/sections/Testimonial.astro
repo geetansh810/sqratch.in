@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import googleWhite from "@/assets/pages/homepage/google-white.png";
+import companyLogo from "@/assets/global/navigation/logo-blue.png";
 
 interface Props {
 	testimonial: string;
@@ -14,15 +14,15 @@ const { testimonial, name } = Astro.props;
 	<div class="bg-black flex-grow py-20 px-16 rounded-3xl">
 		<div class="items-center flex-col justify-center text-center flex">
 			<Image
-				src={googleWhite}
-				alt="Google logo"
+				src={companyLogo}
+				alt="Sqratch"
 				class="object-contain align-middle inline-block w-full h-10 max-w-[8.13rem] mb-8"
 			/>
-			<h2 class="text-white text-[2.13rem] leading-9 lg:max-w-[60%] mb-1">
+			<h2 class="text-white text-4xl mb-4">"{name}"</h2>
+			<h2 class="text-white leading-9 text-2xl mb-1">
 				"{testimonial}"
 			</h2>
 			<div class="bg-white/[0.9] w-12 h-0 my-8 m-auto mx-auto"></div>
-			<h3 class="text-white text-lg">{name}</h3>
 		</div>
 	</div>
 </div>

@@ -9,6 +9,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
 
 import { getData } from "./api/dataFetch";
 import CompetitionLatest from "@/components/sections/CompetitionLatest.astro";
+import Banner from "@/components/sections/Banner.astro";
 
 type HomepageData = {
   hero?: {
@@ -38,32 +39,37 @@ const data = getData("homepage") as Partial<HomepageData>;
         <Hero 
             title={data?.hero?.title ?? ""}
             subtitle={data?.hero?.subtitle ?? ""}
-            buttons={[{
-                title: "Contact", 
-                href: "/contact", 
-                style: "button", 
-                icon: "iconamoon:arrow-top-right-1-thin"
-            }]}
+            buttons={data?.hero?.buttons ?? []}
         />
         <Container>
+            <Banner
+            title={data?.banner?.title}
+            subtitle={data?.banner?.subtitle}
+            sponsorLogo = {data.banner.sponsorLogo}
+            backgroundImage = {data.banner.backgroundImage}
+            cta={{ text: data.banner.cta.text, href: data.banner.cta.href }}
+            />
+
             <Services
                title={data?.services?.title ?? ""}
                 services={data?.services?.services ?? []}
             />
 
-            <RecentWork
+            <BlogLatest title="Recent Blogs"
+            buttons={[{title: "More Blogs", href: "/blogs", style: "button", icon: "iconamoon:arrow-top-right-1-thin"}]}
+            />
+
+            <!-- <RecentWork
                 title="Recent Work"
                 buttons={[{title: "More Work", href: "/works", style: "button", icon: "iconamoon:arrow-top-right-1-thin"}]}
-            />
+            /> -->
+
+            <CompetitionLatest title="Recent Competitions" />
 
             <Testimonial
                 testimonial="Sqratch created a fantastic website for us that turned all of our traffic into new leads. Their work has increased our business tremendously!"
-                name="Geetansh Agrawal"
+                name="This is Sqratch"
             />
-
-            <CompetitionLatest title="Recent Competitions" />
-            
-            <BlogLatest title="Recent Blogs" />
 
         </Container>
 </PageLayout>

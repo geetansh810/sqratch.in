@@ -10,33 +10,43 @@
         "author": "SQRATCH"
     },
     "hero": {
-        "title": "We bring your most majestic visions to <b>life</b>",
-        "subtitle": "Community that encourage and promote excellence in architecture on a global scale. <span class='text-neutral-400'>Contact us for a free consultation.</span>",
+        "title": "Design Competitions that <i>Detonate</i> the Canon",
+        "subtitle": "We're a global platform empowering restless architects through immersive, rebellious challenges. Ready to scratch deeper?",
         "buttons": [
             {
-                "title": "Contact",
+                "title": "Enter INHABIT VI",
                 "href": "/contact",
                 "style": "button",
                 "icon": "iconamoon:arrow-top-right-1-thin"
             }
         ]
     },
+    "banner": {
+        "title": "Join the Revolution",
+        "subtitle": "Unleash your creativity with SQRATCH. Participate in our design competitions and redefine architectural boundaries.",
+        "sponsorLogo": "https://micronation.co.in/wp-content/uploads/2024/01/Artboard_23-removebg-preview-e1705376287958.png",
+        "backgroundImage": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
+        "cta": {
+            "text": "Learn More",
+            "href": "/contact"
+        }
+    },
     "services":{
-        "title": "We leverage our extensive design and technology expertise to <span class='text-neutral-400'>create leading brands and exceptional digital experiences.</span>",
+        "title": "We stand with <i>students, practitioners & studios</i> ready to rethink the rules of architecture, design & urban futures.<br><br> Join The Rebellion.",
         "services": [
             {
-                "title": "Branding",
-                "description": "We connect brand and UX, creating consistent digital identities across all channels with strategic guidance to ensure seamless brand representation.",
+                "title": "Competitions",
+                "description": "Each breif is a provocation - crafted to make you rethink what design can do. <br> <b>Build World.</b> <br> <b>Break rules.</b> <br> <b>Belong with rebels.</b>",
                 "icon": "/src/assets/pages/homepage/marketing-service.png"
             },
             {
-                "title": "Digital Solutions",
-                "description": "We create memorable enterprise and consumer products, ensuring exceptional user experiences and providing complete design systems for easy iteration.",
+                "title": "Education",
+                "description": "SQRATCH Education isn't a school. <br> It's a sandbox. A subversion. A space to relearn design on your own terms.<br> Workshops. Residencies. Mentorship.<br> Peer-to-peer provocations. <br> <b> Unlearn What You Were Taught. Learn What You Were Never Told.</b>",
                 "icon": "/src/assets/pages/homepage/socialmedia-service.png"
             },
             {
-                "title": "Media for payment",
-                "description": "We design impactful advertising campaigns, ensuring exceptional reach and engagement, and providing comprehensive strategies for seamless execution.",
+                "title": "Media",
+                "description": "We make films, features, reels, and reads that expose the architecture behind architecture. <br> No hype. No gloss. Just the raw thoughts that shape our built world. <br> <b>Architecture isn't just what we build. It's what we believe.</b>",
                 "icon": "/src/assets/pages/homepage/paidmedia-service.png"
             }
         ]

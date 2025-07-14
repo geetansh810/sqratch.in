@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { getLocalizedSettings } from "@/lib/localization-helpers";
 import { translatePath, unlocalizedUrl } from "@/lib/localization-helpers";
 import { defaultLocale, locales } from "site";
-
+import logoImage from "@/assets/global/navigation/logo-blue.png";
 const currentLocale = Astro.currentLocale;
 
 function getTranslatedUrl(locale: string): string {
@@ -16,8 +16,6 @@ function isActiveLocale(locale: string): boolean {
 }
 
 const { header, contacts } = getLocalizedSettings(currentLocale);
-
-const logoPath = header.logo?.imagePath;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	"/src/assets/global/**/*.{webp,jpeg,jpg,png,gif,svg}",
@@ -57,7 +55,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 		display: block;
 		width: 100%;
 		height: 2px;
-		background-color: var(--bar-bg, #000);
+		background-color: var(--base-primary-color, #000);
 		border-radius: 5rem;
 		transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
 	}
@@ -130,7 +128,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 				id="header-logo"
 				class="flex text-black justify-self-start lg:justify-self-center inline-block max-w-full"
 			>	
-				<svg
+				<!-- <svg
 					version="1.1"
 					id="CompanyLogo"
 					xmlns="http://www.w3.org/2000/svg"
@@ -216,8 +214,17 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 		l21.6-22.7l3.2-78.7L171,78.7"
 						></path>
 					</g>
-				</svg>
-				<span class="font-bold size-10 mt-2">SQRATCH</span>
+				</svg> -->
+				<Image
+					src={logoImage}
+					alt="Sqratch Logo"
+					width={40}
+					height={40}
+					class="w-8 h-8 lg:w-10 lg:h-10"
+					id="header-logo"
+				/>
+
+				<span class="font-bold mt-2 ml-3 text-blue-primary">Sqratch</span>
 			</a>
 		</div>
 		<div
@@ -278,13 +285,13 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 							<div
 								data-nav-border-reveal
 								data-nav-text-reveal
-								class="text-black items-center cursor-pointer justify-center pt-1 flex w-9 h-9 border-2 border-black border-solid rounded-full"
+								class="text-blue-primary  items-center cursor-pointer justify-center pt-1 flex w-9 h-9 border-2 border-black border-solid rounded-full"
 							>
 								0{index + 1}
 							</div>
 							<div
 								data-nav-text-reveal
-								class="cursor-pointer overflow-hidden text-4xl xs:text-5xl md:text-[5.63rem] !leading-[1.15] text-black"
+								class="text-blue-primary cursor-pointer overflow-hidden text-4xl xs:text-5xl md:text-[5.63rem] !leading-[1.15] text-black"
 							>
 								{page.title}
 							</div>

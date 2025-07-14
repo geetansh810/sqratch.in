@@ -17,7 +17,7 @@ const { post } = Astro.props;
 const unlocalizedPath = unlocalizedUrl(post.slug);
 const localizedPath = translatePath(
 	currentLocale ?? defaultLocale,
-	`/post${unlocalizedPath}`,
+	`/blog${unlocalizedPath}`,
 );
 ---
 
