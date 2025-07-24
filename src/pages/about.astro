@@ -16,7 +16,7 @@ type AboutPageData = {
 
 const data = getData("about") as Partial<AboutPageData>;
 
-try {
+  try {
   await getAboutData()
 } catch (error) {
   console.log(error);

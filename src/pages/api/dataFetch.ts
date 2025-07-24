@@ -8,6 +8,8 @@ import competitions from "@/dummyData/competitionData.json"
 import competition from "@/dummyData/singleCompetitionData.json"
 import news from "@/dummyData/newsData.json"
 import contact from "@/dummyData/contactData.json"
+import footer from "@/dummyData/footerData.json"
+import header from "@/dummyData/headerData.json"
 
 export function getData(page:string){
     switch (page) {
@@ -30,7 +32,11 @@ export function getData(page:string){
         case "contact":
             return contact;      
         case "competition":
-            return competition;      
+            return competition;   
+        case "footer":
+            return footer;       
+        case "header":
+            return header;       
         default:
             return {}
     }

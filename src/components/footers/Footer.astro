@@ -2,13 +2,12 @@
 import { getCollection } from "astro:content";
 import Container from "@/components/primitives/Container.astro";
 import Link from "@/components/primitives/Link.astro";
-import { getLocalizedSettings } from "@/lib/localization-helpers";
 import { translatePath, unlocalizedUrl } from "@/lib/localization-helpers";
-import { defaultLocale, locales } from "site";
+import { getData } from "@/pages/api/dataFetch";
 
 const currentLocale = Astro.currentLocale;
 
-const { footer, contacts } = getLocalizedSettings(currentLocale);
+const data = getData("footer");
 
 function getTranslatedUrl(locale: string): string {
 	const unlocalizedPath = unlocalizedUrl(Astro.url.pathname);
@@ -19,9 +18,83 @@ function isActiveLocale(locale: string): boolean {
 	return locale === currentLocale;
 }
 
-const pages = await getCollection("pages");
-const services = await getCollection("services");
-const posts = await getCollection("posts");
+//Create own pages json not from collections
+const pages = [
+	{
+		"title": "Home",
+		"slug": "/",
+		"type": "home"
+	},
+	{
+		"title": "Works",
+		"slug": "/works",
+		"type": "works"
+	},
+	{
+		"title": "Blogs",
+		"slug": "/blogs",
+		"type": "blogs"
+	},
+	{
+		"title": "Competitions",
+		"slug": "/competitions",
+		"type": "competitions"
+	},
+	{
+		"title": "Contact",
+		"slug": "/contact",
+		"type": "contact"
+	},
+	{
+		"title": "Privacy Policy",
+		"slug": "/privacy",
+		"type": "privacy"
+	},
+	{
+		"title": "Terms",
+		"slug": "/terms",
+		"type": "terms"
+	},
+	{
+		"title": "Information",
+		"slug": "/information",
+		"type": "informational"
+	}
+];
+const services = [
+	{
+		"title": "Service 1",
+		"slug": "/service/service-1",
+		"type": "service"
+	},
+	{
+		"title": "Service 2",
+		"slug": "/service/service-2",
+		"type": "service"
+	},
+	{
+		"title": "Service 3",
+		"slug": "/service/service-3",
+		"type": "service"
+	}
+]
+const blogs = [
+	{
+		"title": "Blog 1",
+		"slug": "/blog/blog-1",
+		"type": "blog"
+	},
+	{
+		"title": "Blog 2",
+		"slug": "/blog/blog-2",
+		"type": "blog"
+	},
+	{
+		"title": "Blog 3",
+		"slug": "/blog/blog-3",
+		"type": "blog"
+	}
+]
 
 // get top 6 pages which are informational pages
 const topInfoPages = pages
@@ -33,11 +106,11 @@ const topInfoPages = pages
 			slug: page.slug.startsWith("/") ? page.slug : `/${page.slug}`,
 		};
 	})
-	.filter(
-		(page) =>
-			page.lang === currentLocale && page.data.type === "informational",
-	)
-	.slice(0, 6);
+	// .filter(
+	// 	(page) =>
+	// 		page.lang === currentLocale && page.data.type === "informational",
+	// )
+	// .slice(0, 6);
 
 const topServices = services
 	.map((page) => {
@@ -51,10 +124,10 @@ const topServices = services
 			),
 		};
 	})
-	.filter((page) => page.lang === currentLocale)
-	.slice(0, 6);
+	// .filter((page) => page.lang === currentLocale)
+	// .slice(0, 6);
 
-const lastPosts = posts
+const lastBlogs = blogs
 	.map((page) => {
 		const [lang, ...slug] = page.slug.split("/");
 		return {
@@ -62,36 +135,37 @@ const lastPosts = posts
 			lang: lang,
 			slug: translatePath(
 				lang,
-				`/post${unlocalizedUrl(`/${page.slug}`)}`,
+				`/blog${unlocalizedUrl(`/${page.slug}`)}`,
 			),
 		};
-	})
-	.filter((page) => page.lang === currentLocale)
-	.sort(
-		(a, b) =>
-			new Date(b.data.lastUpdateDate).getTime() -
-			new Date(a.data.lastUpdateDate).getTime(),
-	)
-	.slice(0, 5);
+	});
+	// .filter((page) => page.lang === currentLocale)
+	// .sort(
+	// 	(a, b) =>
+	// 		new Date(b.data.lastUpdateDate).getTime() -
+	// 		new Date(a.data.lastUpdateDate).getTime(),
+	// );
+	// .slice(0, 5);
 ---
 
 <div
-	class="flex-col text-sm font-medium justify-end pb-10 px-4 lg:px-20 pt-16 flex bg-black"
+	class="bg-blue-primary flex-col text-sm font-medium justify-end pb-10 px-4 lg:px-20 pt-16 flex bg-black"
 >
 	<Container>
 		<div class="items-center flex-col w-full">
 			<div class="items-center flex-col justify-center flex text-white">
 				<h3
 					class="text-4xl lg:text-6xl leading-normal text-center max-w-4xl"
-					set:html={footer.title}
+					set:html={data.title}
 				/>
 				<div class="mt-8">
 					{
-						footer?.buttons?.map(({ text, url }) => (
+						data?.buttons?.map(({ text, url }) => (
 							<Link
 								href={url}
 								style="buttonLight"
 								icon="iconamoon:arrow-top-right-1-thin"
+								class="text-white"
 							>
 								{text}
 							</Link>
@@ -123,17 +197,17 @@ const lastPosts = posts
 									<p
 										class="text-white border-b-2 text-lg pb-1 mb-3 border-white border-solid"
 									>
-										Collegamenti utili
+										All Pages
 									</p>
 									<ul
 										class="text-white/[0.65] mb-3 list-none"
 									>
 										{
 											topInfoPages.map(
-												({ data: { title }, slug }) => (
+												(page) => (
 													<li>
-														<a href={slug}>
-															{title}
+														<a href={page.slug}>
+															{page.title}
 														</a>
 													</li>
 												),
@@ -153,9 +227,9 @@ const lastPosts = posts
 								<ul class="text-white/[0.65] mb-3 list-none">
 									{
 										topServices.map(
-											({ data: { title }, slug }) => (
+											(page) => (
 												<li>
-													<a href={slug}>{title}</a>
+													<a href={page.slug}>{page.title}</a>
 												</li>
 											),
 										)
@@ -168,14 +242,14 @@ const lastPosts = posts
 								<p
 									class="text-white border-b-2 text-lg pb-1 mb-3 border-white border-solid"
 								>
-									Latest posts
+									Latest blogs
 								</p>
 								<ul class="text-white/[0.65] mb-3 list-none">
 									{
-										lastPosts.map(
-											({ data: { title }, slug }) => (
+										lastBlogs.map(
+											(page) => (
 												<li>
-													<a href={slug}>{title}</a>
+													<a href={page.slug}>{page.title}</a>
 												</li>
 											),
 										)
@@ -200,15 +274,15 @@ const lastPosts = posts
 						<div class="items-start flex-col flex">
 							<a
 								class="border-b-2 pb-1 mb-3 border-white border-solid"
-								href={`tel:${contacts.phone}`}
+								href={`tel:${data.contacts.phone}`}
 							>
-								{contacts.phone}
+								{data.contacts.phone}
 							</a>
 							<a
 								class="border-b-2 pb-1 mb-3 border-white border-solid"
-								href={`mailto:${contacts.mail}`}
+								href={`mailto:${data.contacts.mail}`}
 							>
-								{contacts.mail}
+								{data.contacts.mail}
 							</a>
 						</div>
 					</div>
@@ -217,9 +291,9 @@ const lastPosts = posts
 			<div class="mt-16">
 				<div class="items-center justify-between flex gap-4">
 					<p class="text-white/[0.78] text-base">
-						{footer.copyright}
+						{data.copyright}
 					</p>
-					<div class="flex gap-4">
+					<!-- <div class="flex gap-4">
 						{
 							locales.map((locale) => (
 								<a
@@ -237,7 +311,7 @@ const lastPosts = posts
 								</a>
 							))
 						}
-					</div>
+					</div> -->
 					<div class="flex gap-5 text-lg text-blue-700">
 						<a href="/privacy" class="inline-block max-w-full"
 							><p

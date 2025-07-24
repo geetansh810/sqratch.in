@@ -10,6 +10,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
 import { getData } from "./api/dataFetch";
 import CompetitionLatest from "@/components/sections/CompetitionLatest.astro";
 import Banner from "@/components/sections/Banner.astro";
+import LiveCompetitionBanner from "@/components/sections/LiveCompetitionBanner.astro";
 
 type HomepageData = {
   hero?: {
@@ -42,18 +43,32 @@ const data = getData("homepage") as Partial<HomepageData>;
             buttons={data?.hero?.buttons ?? []}
         />
         <Container>
-            <Banner
+            <LiveCompetitionBanner 
+            title={data?.banner?.title}
+            subtitle={data?.banner?.subtitle}
+            description={data?.banner?.description}
+            sponsorsLogos={data?.banner?.sponsorsLogos}
+            sponsorName={data?.banner?.sponsorName}
+            backgroundImage={data?.banner?.backgroundImage}
+            cta={data?.banner?.cta}
+            eventDate={data?.banner?.eventDate}
+            bannerLink={data?.banner?.bannerLink}
+            />
+            <!-- <Banner
             title={data?.banner?.title}
             subtitle={data?.banner?.subtitle}
             sponsorLogo = {data.banner.sponsorLogo}
             backgroundImage = {data.banner.backgroundImage}
             cta={{ text: data.banner.cta.text, href: data.banner.cta.href }}
-            />
+            /> -->
 
             <Services
                title={data?.services?.title ?? ""}
                 services={data?.services?.services ?? []}
             />
+
+            <!-- divider -->
+            <div class="w-full h-[1px] bg-slate-200 my-20" />
 
             <BlogLatest title="Recent Blogs"
             buttons={[{title: "More Blogs", href: "/blogs", style: "button", icon: "iconamoon:arrow-top-right-1-thin"}]}

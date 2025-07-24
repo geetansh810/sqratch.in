@@ -3,7 +3,8 @@ import { Image } from "astro:assets";
 import { getLocalizedSettings } from "@/lib/localization-helpers";
 import { translatePath, unlocalizedUrl } from "@/lib/localization-helpers";
 import { defaultLocale, locales } from "site";
-import logoImage from "@/assets/global/navigation/logo-blue.png";
+import logoImage from "@/assets/global/navigation/Sqratch_logo.svg";
+import { getData } from "@/pages/api/dataFetch";
 const currentLocale = Astro.currentLocale;
 
 function getTranslatedUrl(locale: string): string {
@@ -15,11 +16,11 @@ function isActiveLocale(locale: string): boolean {
 	return locale === currentLocale;
 }
 
-const { header, contacts } = getLocalizedSettings(currentLocale);
-
-const images = import.meta.glob<{ default: ImageMetadata }>(
-	"/src/assets/global/**/*.{webp,jpeg,jpg,png,gif,svg}",
-);
+// const { header, contacts } = getLocalizedSettings(currentLocale);
+// const images = import.meta.glob<{ default: ImageMetadata }>(
+// 	"/src/assets/global/**/*.{webp,jpeg,jpg,png,gif,svg}",
+// );
+const header = getData("header");
 ---
 
 <style>
@@ -114,15 +115,28 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 	.split-child {
 		display: inline-block;
 	}
+
+    .frosted-text-box {
+      width: max-content;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      border-radius: 30px;
+      font-size: 2rem;
+      transition: all 0.6s ease;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      opacity: 1;
+    }
 </style>
 
 <header class="fixed w-full z-30">
 	<div
 		class="items-center auto-cols-fr grid-cols-2 lg:grid-cols-2 grid-rows-[auto] justify-between left-0 py-3.5 px-6 lg:px-20 right-0 top-0 grid gap-4"
-	>
-		<div
-			class="items-center flex-wrap justify-start relative flex text-blue-700 z-20"
 		>
+		<div
+			class="items-center flex-wrap justify-start relative flex text-blue-700 z-20 frosted-text-box"
+			>
 			<a
 				href={translatePath(currentLocale ?? defaultLocale, "/")}
 				id="header-logo"
@@ -224,7 +238,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 					id="header-logo"
 				/>
 
-				<span class="font-bold mt-2 ml-3 text-blue-primary">Sqratch</span>
+				<span class="font-logo mt-1 ml-3 text-blue-primary text-3xl">Sqratch</span>
 			</a>
 		</div>
 		<div
@@ -245,7 +259,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 			<div
 				class="items-center justify-center relative flex h-16 lg:w-24 lg:h-24"
 			>
-				<div class="menu-icon">
+				<div class="menu-icon frosted-text-box">
 					<input
 						id="menu-toggle"
 						class="menu-icon__checkbox"
@@ -298,7 +312,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 						</a>
 					))
 				}
-				<div class="flex gap-8 pt-10 pl-16 md:pl-0">
+				<!-- <div class="flex gap-8 pt-10 pl-16 md:pl-0">
 					{
 						locales.map((locale) => (
 							<a
@@ -317,7 +331,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 							</a>
 						))
 					}
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</nav>

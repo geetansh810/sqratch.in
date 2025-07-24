@@ -1,0 +1,165 @@
+---
+import "@/styles/liveCompetitionBanner.css";
+import { Astro } from "astro";
+import Competition from "./Competition.astro";
+import CompetitionRegistrationForm from "./CompetitionRegistrationForm.astro";
+
+interface Props {
+    title: string;
+    subtitle: string;
+    description: string;
+    sponsorsLogos: string[];
+    sponsorName?: string;
+    backgroundImage?: string;
+    cta: {
+        text: string;
+        href: string;
+    };
+    eventDate?: Date;
+    bannerLink?: string;
+}
+const { title, subtitle, description, sponsorsLogos, sponsorName, backgroundImage, cta, eventDate, bannerLink } = Astro.props as Props;
+
+---
+    <div class="banner-container">
+        <div class="particles" id="particles"></div>
+
+        <div class="header">
+            <div class="marquee">
+                <div class="marquee__inner">
+                    <h1>
+                        LIVE !!&nbsp;     REGISTER NOW !!&nbsp;     LIVE !!&nbsp;     REGISTER NOW !!&nbsp;     LIVE !!&nbsp;     REGISTER NOW !!&nbsp;     LIVE !!&nbsp;     REGISTER NOW !!&nbsp; 
+                        LIVE !!&nbsp;     REGISTER NOW !!&nbsp;     LIVE !!&nbsp;     REGISTER NOW !!&nbsp;     LIVE !!&nbsp;     REGISTER NOW !!&nbsp;     LIVE !!&nbsp;     REGISTER NOW !!&nbsp; 
+                        <!-- <span class="highlight">AI Summit 2024</span> - Join the Future of AI Innovation -->
+                    </h1>
+                </div>
+            </div>
+            <h1>{title} : <span class="highlight">{subtitle}</span></h1>
+            <div class="tag">Limited Spots Available</div>
+            <p class="description">{description}</p>
+        </div>
+
+        <div class="content">
+            <div class="live-indicator">
+                <div class="icon-pulse"></div>
+                Registration now open
+            </div>
+
+            <div class="speakers">
+                {
+                    sponsorsLogos.map((logo :any ) => (
+                        <img src={logo} alt="Sponsor Logo" class="sponsor-logo" />
+                    ))
+                }
+                <div class="speaker-count">+5</div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-video"></i>
+                    <span>Live Sessions</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-comments"></i>
+                    <span>Interactive Q&A</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Resources</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            <div class="">
+                <a href="#openModal" class="cta">Register Now</a>
+                <div class="register-info">
+                    Early bird pricing ends in 7 days. Secure your spot today!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="openModal" class="modalDialog">
+        <CompetitionRegistrationForm />
+    </div>
+
+    <script type="application/json" id="astro-props" set:html={JSON.stringify({ eventDate })}></script>
+
+    <script>
+        import { As } from "@kobalte/core";
+
+        // Generate animated background particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 15;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+
+            // Random sizing and positioning
+            const size = Math.random() * 50 + 10;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const delay = Math.random() * 10;
+            const duration = Math.random() * 10 + 10;
+
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+
+            particlesContainer.appendChild(particle);
+        }
+
+        const astroProps = JSON.parse(document.getElementById('astro-props').textContent);
+        const eventDate = new Date(astroProps.eventDate);
+        const countdownDate = new Date(eventDate).getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    </script>

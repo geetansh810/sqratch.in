@@ -23,6 +23,8 @@ interface Props {
 const { title, subtitle, buttons } = Astro.props;
 
 const rightBanner = "https://micronation.co.in/wp-content/uploads/2025/05/ChatGPT-Image-May-16-2025-01_37_30-AM-683x1024.png"
+
+
 ---
 
 <div
@@ -39,14 +41,14 @@ const rightBanner = "https://micronation.co.in/wp-content/uploads/2025/05/ChatGP
 				>
 					<h1
 						data-hero-reveal
-						class="text-blue-primary nova-font text-4xl md:text-6xl leading-tight my-0 mx-0"
+						class="font-banner md:leading-snug text-blue-primary text-4xl md:text-5xl my-0 mx-0"
 						set:html={title}
 					/>
-					<div class="lg:mt-20">
+					<div class="lg:mt-10">
 						<div>
 							<p
 								data-hero-reveal
-								class="text-blue-primary text-3xl font-semibold mb-0"
+								class="font-title text-blue-primary text-2xl font-semibold mb-0"
 								set:html={subtitle}
 							/>
 							<div class="mt-10 text-white">

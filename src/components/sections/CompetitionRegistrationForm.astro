@@ -1,0 +1,202 @@
+---
+import "@/styles/liveCompetitionBanner.css";
+
+---
+<div style="max-width: 800px; margin: 0 auto; max-height: 85vh; overflow-y: auto; padding-right: 1rem;">
+    <a href="#close" title="Close" class="close">×</a>
+    <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Competition Registration Form</h2>
+
+    <form id="competition-form" enctype="multipart/form-data" novalidate>
+      <fieldset class="form-section">
+        <legend>Personal Details</legend>
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Please provide your E-mail *</label>
+          <input type="email" id="email" name="email" placeholder="example@domain.com" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="Please enter a valid email address." />
+          <small>Required as you will be contacted via e-mail only</small>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" placeholder="10-digit phone number" required pattern="^[0-9]{10,15}$" title="Enter a valid phone number (10–15 digits)." />
+        </div>
+        <div class="form-group">
+          <label for="institute">Institute (Bachelor's/Masters) *</label>
+          <input type="text" id="institute" name="institute" placeholder="Your college or university" required />
+        </div>
+        <div class="form-group">
+          <label>Are you registering as a professional?</label>
+          <div class="radio-group flex gap-2">
+            <input type="radio" id="proYes" name="professional" value="Yes" />
+            <label for="proYes">Yes</label>
+            <input type="radio" id="proNo" name="professional" value="No" />
+            <label for="proNo">No</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="company">Company Affiliation</label>
+          <input type="text" id="company" name="company" placeholder="Company name (if any)" />
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>Team Information</legend>
+        <div class="form-group">
+          <label for="teamSize">Team Members (including yourself, max 3) *</label>
+          <input type="number" id="teamSize" name="teamSize" min="1" max="3" required />
+        </div>
+        <div class="form-group">
+          <label for="member1Name">Team Member 1 Full Name *</label>
+          <input type="text" id="member1Name" name="member1Name" placeholder="Full name of team member 1" required />
+        </div>
+        <div class="form-group">
+          <label for="member1Email">Team Member 1 Email Address *</label>
+          <input type="email" id="member1Email" name="member1Email" placeholder="example@domain.com" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="Please enter a valid email address." />
+        </div>
+        <div class="form-group">
+          <label for="member2Name">Team Member 2 Full Name (if applicable)</label>
+          <input type="text" id="member2Name" name="member2Name" placeholder="Full name of team member 2 (optional)" />
+        </div>
+        <div class="form-group">
+          <label for="member2Email">Team Member 2 Email Address (if applicable)</label>
+          <input type="email" id="member2Email" name="member2Email" placeholder="example@domain.com (optional)" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="Please enter a valid email address." />
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>Project Submission</legend>
+        <div class="form-group">
+          <label for="projectTitle">Project Title *</label>
+          <input type="text" id="projectTitle" name="projectTitle" placeholder="Enter the title of your project" required />
+        </div>
+        <div class="form-group">
+          <label for="projectDescription">Project Description *</label>
+          <textarea id="projectDescription" class="w-full" name="projectDescription" rows="6" placeholder="Describe your project briefly..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="projectUpload">Upload Project Entry (PDF, images) *</label>
+          <input type="file" id="projectUpload" name="projectUpload" accept=".pdf,.png,.jpg,.jpeg" required />
+          <small>Upload 1 supported file. Max 10 MB.</small>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>Additional Details</legend>
+        <div class="form-group">
+          <label for="referral">How did you hear about this competition? *</label>
+          <select id="referral" name="referral" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Friend/Colleague">Friend/Colleague</option>
+            <option value="University/College">University/College</option>
+            <option value="Website">Website</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="instagram">Instagram Handle</label>
+          <input type="text" id="instagram" name="instagram" placeholder="@yourhandle (optional)" />
+          <small>We’d love to share your work on our Instagram account.</small>
+        </div>
+        <div class="form-group flex items-center gap-2">
+          <input type="checkbox" id="consent" name="consent" required />
+          <label for="consent">I agree to the terms and conditions *</label>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="submit-btn" id="submitRegistration">Submit</button>
+    </form>
+<script>
+  document.getElementById('submitRegistration').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const requiredFields = [
+      'fullName', 'email', 'phone', 'institute', 'teamSize',
+      'member1Name', 'member1Email', 'projectTitle',
+      'projectDescription', 'projectUpload', 'referral', 'consent'
+    ];
+
+    let isValid = true;
+    let userName = '';
+    let userEmail = '';
+
+    requiredFields.forEach(id => {
+      const el = document.getElementById(id);
+      const value = el.type === 'checkbox' ? el.checked : el.value.trim();
+      const invalid = (el.type === 'checkbox' && !value) || (el.type !== 'checkbox' && value === '');
+      const patternMismatch = el.pattern && !new RegExp(el.pattern).test(el.value);
+
+      if (invalid || patternMismatch) {
+        let tooltipText = '';
+        if (el.type === 'email') tooltipText = 'Please enter a valid email address.';
+        else if (el.type === 'tel') tooltipText = 'Enter a valid phone number (10–15 digits).';
+        else if (el.type === 'file') tooltipText = 'Please upload a valid file.';
+        else if (el.type === 'checkbox') tooltipText = 'You must agree to the terms.';
+        else tooltipText = 'This field is required.';
+
+        el.setAttribute('title', tooltipText);
+        shake(el);
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        isValid = false;
+      } else {
+        if (id === 'fullName') userName = el.value.trim();
+        if (id === 'email') userEmail = el.value.trim();
+        el.removeAttribute('title');
+      }
+    });
+
+    if (!isValid) return;
+
+    const modalContent = document.querySelector('.modalDialog > div');
+    modalContent.innerHTML = `
+      <a href="#close" title="Close" class="close">×</a>
+      <div style="text-align: center; padding: 2rem 1rem;">
+          <i class="fas fa-check-circle" style="font-size: 4rem; color: #4cc9f0; margin-bottom: 1.5rem;"></i>
+          <h2 style="margin-bottom: 1rem;">Registration Successful!</h2>
+          <p style="margin-bottom: 2rem;">Thank you, ${userName}! We've sent a confirmation email to ${userEmail}. You're officially registered.</p>
+          <a href="#close" class="cta" style="text-decoration: none;">Close</a>
+      </div>
+    `;
+  });
+
+  function shake(element) {
+    element.style.border = '1px solid #f72585';
+    element.animate([
+      { transform: 'translateX(0)' },
+      { transform: 'translateX(-10px)' },
+      { transform: 'translateX(10px)' },
+      { transform: 'translateX(-10px)' },
+      { transform: 'translateX(10px)' },
+      { transform: 'translateX(0)' }
+    ], {
+      duration: 500,
+      easing: 'ease-in-out'
+    });
+
+    setTimeout(() => {
+      const isValid = (element.type === 'checkbox' ? element.checked : element.value.trim() !== '');
+      if (!isValid) {
+        element.style.border = '1px solid #f72585';
+      } else {
+        element.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+      }
+    }, 500);
+  }
+
+  const formInputs = document.querySelectorAll('input, select, textarea');
+  formInputs.forEach(input => {
+    input.addEventListener('input', function () {
+                // element.style.backgroundColor= 'transparent'
+        this.style.backgroundColor = 'transparent';
+        this.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+
+      if (this.type === 'checkbox' ? this.checked : this.value.trim() !== '') {
+        this.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+        this.removeAttribute('title');
+      }
+    });
+  });
+</script>
+</div>

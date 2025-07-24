@@ -17,57 +17,44 @@ const posts = await getCollection("posts");
 // const posts = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
 const recentPosts = posts
-  .map((post) => {
-    const [lang, ...slug] = post.slug.split("/");
-    return {
-      ...post,
-      lang: lang,
-      slug: post.slug.startsWith("/") ? post.slug : `/${post.slug}`,
-    };
-  })
-  .filter((post) => post.lang === currentLocale)
-  .sort(
-    (a, b) => a.data.lastUpdateDate.getTime() - b.data.lastUpdateDate.getTime()
-  )
-  .slice(0, 4) as CollectionEntry<"posts">[];
+.map((post) => {
+const [lang, ...slug] = post.slug.split("/");
+return {
+...post,
+lang: lang,
+slug: post.slug.startsWith("/") ? post.slug : `/${post.slug}`,
+};
+})
+.filter((post) => post.lang === currentLocale)
+.sort(
+(a, b) => a.data.lastUpdateDate.getTime() - b.data.lastUpdateDate.getTime()
+)
+.slice(0, 4) as CollectionEntry<"posts">[];
 
-interface Props {
+  interface Props {
   title: string;
   buttons: ButtonProps[];
-}
+  }
 
-const { title, buttons } = Astro.props;
----
+  const { title, buttons } = Astro.props;
+  ---
 
-<div class="text-sm font-medium pt-20 pb-32">
-  <div
-    class="items-center justify-center flex text-[3.13rem] leading-none font-semibold"
-  >
-    <h2 class="my-1">{title}</h2>
-  </div>
-  <div class="mt-16">
-    <div
-	    class="text-sm font-medium auto-cols-fr grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto] grid gap-[3.13rem]"
-    >
-
-      {allPosts.map((blog) => <RecentBlog {blog} />)}
+  <div class="text-sm font-medium pt-5 pb-32 text-blue-primary">
+    <div class="items-center justify-center flex text-[3.13rem] leading-none font-semibold">
+      <h2 class="my-1">{title}</h2>
     </div>
-    <div
-  	class="items-center flex-col text-sm font-medium flex text-white pt-16 pb-20">
-	{
-		buttons.map(({ title, href, style, icon }) => (
-			<Link
-				href={href}
-				style={
-					style as "primary" | "button" | "outline" | "buttonLight"
-				}
-				icon={icon}
-			>
-				{title}
-			</Link>
-		))
-	}
-</div>
-
+    <div class="mt-16">
+      <div class="text-sm font-medium auto-cols-fr grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto] grid gap-[3.13rem]">
+        {allPosts.slice(0, 2).map((blog) => <RecentBlog {blog} />)}
+      </div>
+      <div class="items-center flex-col text-sm font-medium flex text-white pt-16 pb-20">
+        {
+        buttons.map(({ title, href, style, icon }) => (
+        <Link href={href} style={ style as "primary" | "button" | "outline" | "buttonLight" } icon={icon}>
+        {title}
+        </Link>
+        ))
+        }
+      </div>
+    </div>
   </div>
-</div>

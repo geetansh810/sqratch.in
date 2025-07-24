@@ -4,9 +4,27 @@
 
 @font-face {
 	font-family: 'Novaklasse';
-	/*  Choose a name for your font  */
-	src: url('../utils/novaklasse-semibold-BF65f32c1d1314a.otf') format('opentype');
+	src: url('../assets/fonts/nova-klasse-font-1748158241-0/novaklasse-semibold-BF65f32c1d1314a.otf') format('opentype');
 }
+@font-face {
+	font-family: 'DisplayFair';
+	src: url('../assets/fonts/moreFonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format('opentype');
+}
+@font-face {
+	font-family: 'MontserratBlack';
+	src: url('../assets/fonts/Montserrat/Montserrat-Regular.ttf') format('opentype');
+}
+@font-face {
+	font-family: 'MontserratBold';
+	src: url('../assets/fonts/Montserrat/Montserrat-Bold.ttf') format('opentype');
+}
+
+/* @font-face {
+	font-family: 'Inter';
+	src: url('/src/assets/fonts/Inter-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+} */
 
 :root {
 	--base-padding-x: 1rem;
@@ -24,6 +42,11 @@
 html {
 	scrollbar-gutter: stable;
 	@apply overflow-x-hidden;
+}
+
+body {
+	@apply font-title;
+	/* color: #0055cd !important; */
 }
 
 /* Selection */
@@ -78,8 +101,4 @@ html {
 
 .bg-blue-primary{
 	background-color: #0055cd !important;
-}
-
-.nova-font{
-	font-family: Novaklasse;
 }
