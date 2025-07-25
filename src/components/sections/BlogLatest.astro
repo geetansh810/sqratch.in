@@ -47,7 +47,7 @@ slug: post.slug.startsWith("/") ? post.slug : `/${post.slug}`,
       <div class="text-sm font-medium auto-cols-fr grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto] grid gap-[3.13rem]">
         {allPosts.slice(0, 2).map((blog) => <RecentBlog {blog} />)}
       </div>
-      <div class="items-center flex-col text-sm font-medium flex text-white pt-16 pb-20">
+      <div class="items-center flex-col text-sm font-medium flex text-white pt-5 pb-10">
         {
         buttons.map(({ title, href, style, icon }) => (
         <Link href={href} style={ style as "primary" | "button" | "outline" | "buttonLight" } icon={icon}>

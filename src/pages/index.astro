@@ -79,7 +79,9 @@ const data = getData("homepage") as Partial<HomepageData>;
                 buttons={[{title: "More Work", href: "/works", style: "button", icon: "iconamoon:arrow-top-right-1-thin"}]}
             /> -->
 
-            <CompetitionLatest title="Recent Competitions" />
+            <CompetitionLatest title="Recent Competitions"
+              buttons={[{title: "More Competitions", href: "/competition", style: "button", icon: "iconamoon:arrow-top-right-1-thin"}]}
+            />
 
             <Testimonial
                 testimonial="Sqratch created a fantastic website for us that turned all of our traffic into new leads. Their work has increased our business tremendously!"

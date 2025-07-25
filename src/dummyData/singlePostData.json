@@ -2,13 +2,35 @@
     "title": "Mastering Email Marketing Campaigns for E-commerce Success",
     "description": "Discover proven strategies to create engaging email marketing campaigns that drive sales and customer loyalty in the e-commerce space.",
     "category": "Digital Marketing",
-    "author": "Marcus Chen",
+    "author": {
+        "name": "Marcus Chen",
+        "image": "https://images.unsplash.com/photo-1714171055387-2afff3d22957?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "bio": "Marcus is a digital marketing strategist with over 10 years of experience in e-commerce and email marketing. He specializes in helping businesses optimize their online presence and increase sales through targeted campaigns.",
+        "socialLinks": [
+            {
+                "platform": "Twitter",
+                "url": "https://twitter.com/marcuschen",
+                "icon": "mdi:twitter"
+            },
+            {
+                "platform": "LinkedIn",
+                "url": "https://www.linkedin.com/in/marcuschen",
+                "icon": "mdi:linkedin"
+            },
+            {
+                "platform": "Website",
+                "url": "https://marcuschen.com",
+                "icon": "mdi:web"
+            }
+        ]
+    },
     "cover": "https://images.unsplash.com/photo-1714171055387-2afff3d22957?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "tags": [
         "Email Marketing",
         "E-commerce",
         "Customer Engagement"
     ],
+    
     "pubDate": "2024-03-09",
     "lastUpdateDate": "2024-03-09",
     "hidden": false,

@@ -9,11 +9,20 @@
         "author": "Your Company"
     },
     "banner": {
-        "title":"ALCHEMY: An AI Architecture Render Competition !",
-        "subtitle":"An AI Architecture Render Competition",
-        "sponsorLogo": "https://micronation.co.in/wp-content/uploads/2024/01/Artboard_23-removebg-preview-e1705376287958.png",
-        "backgroundImage": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
-        "cta":{"text": "Apply Now", "href": "/competitions/alchemy"}
+        "title": "AlCHEMY",
+        "subtitle": "Join the Revolution",
+        "description": "Unleash your creativity with SQRATCH. Participate in our design competitions and redefine architectural boundaries.",
+        "sponsorsLogos": [
+            "https://micronation.co.in/wp-content/uploads/2025/05/11-scaled.png",
+            "https://geetansh810.github.io/portfolio/_astro/profilePhoto.C83svOgN_ZFGk5J.avif",
+            "https://micronation.co.in/wp-content/uploads/2024/01/Artboard_23-removebg-preview-e1705376287958.png"
+        ],
+        "bannerLink": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
+        "cta": {
+            "text": "Learn More",
+            "href": "/contact"
+        },
+        "eventDate": "2025-08-23T21:22:06.625Z"
     },
     "content": [
         {

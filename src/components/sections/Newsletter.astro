@@ -1,0 +1,106 @@
+---
+---
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Raleway:300);
+ form.newsletter {
+	 width: 30%;
+	 margin: 5% auto;
+	 text-align: center;
+	 position: relative;
+}
+ form.newsletter:after {
+	 content: "Enter your email and click on subscribe";
+	 color: #BBBBBB;
+	 font-size: 12px;
+}
+ .newsletter label {
+	 color: #808080;
+	 font-size: 18px;
+	 display: table-cell;
+	 vertical-align: bottom;
+	 width: 400px;
+	 height: 30px;
+}
+ .newsletter label:before {
+	 content: "\f1d8";
+	 font-family: fontAwesome;
+	 margin-right: 10px;
+	 color: #808080;
+}
+ .newsletter input {
+	 height: 50px;
+	 line-height: 50px;
+	 padding: 0 20px;
+	 font: inherit;
+}
+ .newsletter input[type="email"] {
+	 display: block;
+	 width: 100%;
+	 bcakground-color: #FFFFFF;
+	 border-radius: 10px;
+	 border: 1px solid #808080;
+	 margin: 10px 0;
+	 -webkit-transition: border-color 0.4s ease 0, padding-right 0.2s ease 0.2s;
+	 -moz-transition: border-color 0.4s ease 0, padding-right 0.2s ease 0.2s;
+	 -o-transition: border-color 0.4s ease 0, padding-right 0.2s ease 0.2s;
+	 transition: border-color 0.4s ease 0, padding-right 0.2s ease 0.2s;
+}
+ .newsletter input[type="email"]:focus {
+	 outline: none;
+	 border-color: #0055cd;
+	 padding-right: 120px;
+	 -webkit-transition: padding-right 0.2s ease 0 !important;
+	 -moz-transition: padding-right 0.2s ease 0 !important;
+	 -o-transition: padding-right 0.2s ease 0 !important;
+	 transition: padding-right 0.2s ease 0 !important;
+}
+ .newsletter input[type="email"]:focus + input[type="submit"] {
+	 visibility: visible;
+	 opacity: 1;
+	 border-color: #0055cd;
+}
+ .newsletter input[type="submit"] {
+	 border: none;
+	 border-left: 1px solid #808080;
+	 border-top-right-radius: 10px;
+	 border-bottom-right-radius: 10px;
+	 color: #0055cd;
+	 background-color: inherit;
+	 cursor: pointer;
+	 position: absolute;
+	 right: -1px;
+	 top: 40px;
+	 visibility: hidden;
+	 opacity: 0;
+	 -webkit-transition: all 0.4s ease 0;
+	 -moz-transition: all 0.4s ease 0;
+	 -o-transition: all 0.4s ease 0;
+	 transition: all 0.4s ease 0;
+}
+ .newsletter input[type="submit"]:hover {
+	 background-color: #0055cd;
+	 color: #FFFFFF;
+}
+ ::-webkit-input-placeholder {
+	 text-transform: capitalize;
+}
+ :-moz-placeholder {
+	 text-transform: capitalize;
+}
+ ::-moz-placeholder {
+	 text-transform: capitalize;
+}
+ :-ms-input-placeholder {
+	 text-transform: capitalize;
+}
+ input:-webkit-autofill {
+	 -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+}
+</style>
+
+<form class="newsletter" >
+  <label for="email">Subscribe to our mailing list</label>
+  <input type="email" value="" name="email" placeholder="john@sqratch.com" required>
+  <input type="submit" value="Subscribe" name="subscribe">
+</form>

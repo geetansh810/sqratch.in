@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 // import allPosts from "@/dummyData/postData.json";
 import CompetitionPreview from "./CompetitionPreview.astro";
 import { getData } from "@/pages/api/dataFetch";
+import Link from "../primitives/Link.astro";
 
 const currentLocale = Astro.currentLocale;
 
@@ -31,9 +32,10 @@ const posts = getData("competitions");
 
 // interface Props {
 //   title: string;
+//   buttons: ButtonProps[];
 // }
 
-const { title } = Astro.props;
+const { title, buttons } = Astro.props;
 ---
 
 <div class="text-sm font-medium pt-0 pb-32">
@@ -48,5 +50,14 @@ const { title } = Astro.props;
     >
       {posts.content.map((post) => <CompetitionPreview {post} />)}
     </div>
+    <div class="items-center flex-col text-sm font-medium flex text-white pt-10 pb-10">
+        {
+          buttons.map(({ title, href, style, icon }) => (
+          <Link href={href} style={ style as "primary" | "button" | "outline" | "buttonLight" } icon={icon}>
+          {title}
+          </Link>
+          ))
+        }
+      </div>
   </div>
 </div>

@@ -62,6 +62,26 @@ const styles = {
 };
 ---
 
+<style>
+	.bg-primary-800 {
+		background-color: #0055cd !important;
+	}
+	.button-primary {
+		background-color: #0055cd !important;
+		transition: border 0.2s;
+	}
+	.button-primary:hover {
+		opacity: 0.85;
+		border: black 2px solid;
+	}
+	.button-primary [data-icon="iconamoon:arrow-top-right-1-thin"] {
+		transition: transform 0.2s;
+	}
+	.button-primary:hover [data-icon="iconamoon:arrow-top-right-1-thin"] {
+		transform: translate(3px, -3px);
+	}
+</style>
+
 <Tag
 	href={localized && href?.startsWith("/")
 		? getRelativeLocaleUrl(currentLocale ?? defaultLocale, href)
@@ -78,20 +98,3 @@ const styles = {
 	<slot />
 	{icon && <Icon name={icon} size={iconSizes[size]} />}
 </Tag>
-
-<style>
-	.button-primary {
-		background-color: #0055cd !important;
-		transition: border 0.2s;
-	}
-	.button-primary:hover {
-		opacity: 0.85;
-		border: black 2px solid;
-	}
-	.button-primary [data-icon="iconamoon:arrow-top-right-1-thin"] {
-		transition: transform 0.2s;
-	}
-	.button-primary:hover [data-icon="iconamoon:arrow-top-right-1-thin"] {
-		transform: translate(3px, -3px);
-	}
-</style>

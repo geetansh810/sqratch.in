@@ -21,7 +21,6 @@ const documentId = '6830d00f0003b4155bfc'; // Make sure this exists!
  */
 export async function getAboutData() {
     console.log("Calling data");
-
     try {
         const data = await databases.getDocument(databaseId, collectionId, documentId);
         console.log("Document data:", data);

@@ -8,31 +8,33 @@ import Share from "@/components/primitives/Share.astro";
 import Title from "@/components/primitives/Title.astro";
 import { defaultLocale } from "site";
 import BaseLayout from "./BaseLayout.astro";
+import Newsletter from "@/components/sections/Newsletter.astro";
+import { Icon } from "astro-icon/components";
 
 type Props = {
-	data:any
+data:any
 };
 
 const currentLocale = Astro.currentLocale;
 
 interface PostLayoutLocale {
-	writtenBy: string;
-	writtenAt: string;
+writtenBy: string;
+writtenAt: string;
 }
 
 interface ComponentLocales {
-	[key: string]: PostLayoutLocale;
+[key: string]: PostLayoutLocale;
 }
 
 const componentLocales: ComponentLocales = {
-	it: {
-		writtenBy: "Scritto da: ",
-		writtenAt: "nel",
-	},
-	en: {
-		writtenBy: "Written by: ",
-		writtenAt: "on",
-	},
+it: {
+writtenBy: "Scritto da: ",
+writtenAt: "nel",
+},
+en: {
+writtenBy: "Written by: ",
+writtenAt: "on",
+},
 };
 
 const l = componentLocales[currentLocale ?? defaultLocale];
@@ -45,22 +47,22 @@ const { data } = Astro.props;
 		<Container>
 			<div class="text-center">
 				{
-					"author" in data &&
-						data?.author &&
-						"pubDate" in data &&
-						data?.pubDate && (
-							<div class="inline-flex items-center gap-4 pb-4 lg:pb-6">
-								<span class="text-xs font-semibold uppercase tracking-wide text-black">
-									<span>
-										{l.writtenBy} {data?.author}
-										{l.writtenAt}
-									</span>
-									{data?.pubDate
-										?.toString()
-										.slice(0, 10)}
-								</span>
-							</div>
-						)
+				"author" in data &&
+				data?.author &&
+				"pubDate" in data &&
+				data?.pubDate && (
+				<div class="inline-flex items-center gap-4 pb-4 lg:pb-6">
+					<span class="text-xs font-semibold uppercase tracking-wide text-black">
+						<span>
+							{l.writtenBy} {data?.author}
+							{l.writtenAt}
+						</span>
+						{data?.pubDate
+						?.toString()
+						.slice(0, 10)}
+					</span>
+				</div>
+				)
 				}
 
 				<Title level={1}>{data.title}</Title>
@@ -71,42 +73,84 @@ const { data } = Astro.props;
 			<div class="flex w-full flex-col items-center justify-center pt-12">
 				<div class="flex flex-wrap justify-center gap-3">
 					{
-						"tags" in data &&
-							data?.tags?.map((tag: unknown) => (
-								<li class="list-none">
-									<Link
-										href={`/tags/${tag}`}
-										size="md"
-										style="outline"
-									>
-										{tag}
-									</Link>
-								</li>
-							))
+					"tags" in data &&
+					data?.tags?.map((tag: unknown) => (
+					<li class="list-none">
+						<Link href={`/tags/${tag}`} size="md" style="outline">
+						{tag}
+						</Link>
+					</li>
+					))
 					}
 				</div>
 				{
-					"cover" in data && data?.cover && (
-						<Image
-							class="mt-12 w-full rounded-4xl lg:w-auto lg:min-w-[50rem] lg:rounded-5xl"
-							src={data?.cover}
-							alt={`Cover image for ${data?.title}`}
-							inferSize={true}
-						/>
-					)
+				"cover" in data && data?.cover && (
+				<Image class="mt-12 w-full rounded-4xl lg:w-[60rem] lg:min-w-[50rem] lg:rounded-5xl" src={data?.cover}
+					alt={`Cover image for ${data?.title}`} inferSize={true} />
+				)
 				}
-				<Prose><slot /></Prose>
+				<Prose>
+					<slot />
+				</Prose>
 				<!-- <div
 					class:list={[
 						"prose mx-auto w-full max-w-3xl pt-12 text-lg text-slate-900 prose-headings:font-normal prose-headings:tracking-tighter prose-headings:text-black prose-a:text-slate-500 hover:prose-a:text-black prose-blockquote:border-l-slate-950 prose-blockquote:text-slate-500 prose-code:text-black prose-pre:rounded-3xl prose-li:marker:text-slate-500"
 					]}>
 					<div set:html={data.htmlContent} />
 				</div> -->
+				<!-- Author card -->
+				<div
+					class="relative max-w-4xl my-8 md:my-8 flex flex-col items-start space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 px-4 py-8 border-2 border-dashed border-gray-400 dark:border-gray-400 shadow-lg rounded-lg">
+					<span
+						class="absolute text-xs font-medium top-0 left-0 rounded-br-lg rounded-tl-lg px-2 py-1 bg-primary-100 dark:bg-gray-900 dark:text-gray-300 border-gray-400 dark:border-gray-400 border-b-2 border-r-2 border-dashed ">
+						About the author
+					</span>
+
+					<div class="w-full flex justify-center sm:justify-start sm:w-auto">
+						<img class="object-cover max-h-20 max-w-20 mt-3 mr-3 rounded-full"
+							src={data?.author?.image}>
+					</div>
+
+					<div class="w-full sm:w-auto flex flex-col items-center sm:items-start">
+
+						<p class="font-display mb-2 text-2xl font-semibold " itemprop="author">
+							{data?.author?.name}
+						</p>
+
+						<div class="mb-4 md:text-lg text-gray-400">
+							<p>
+								{data?.author?.bio}
+							</p>
+						</div>
+
+						<div class="flex gap-4">
+							{
+							Object.entries(data?.author?.socialLinks).map(([key, value]) => {
+								return (
+									<a title={`${value?.platform} url`} 
+										href={value?.url} target="_blank"
+
+										rel="noopener noreferrer">
+										<Icon
+											name={value?.icon}
+											class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+											size={28}
+										/>
+									</a>
+								);
+							})}
+						</div>
+
+						</div>
+					</div>
+
+				</div>
 
 				<div class="mx-auto w-full max-w-3xl pt-20">
 					<Share />
 				</div>
 			</div>
+			<Newsletter />
 		</Container>
 	</section>
 </BaseLayout>
