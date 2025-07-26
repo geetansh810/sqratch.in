@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPreview from "@/components/sections/BlogPreview.astro";
+import RecentBlog from "./RecentBlog.astro";
 
 const currentLocale = Astro.currentLocale;
 
@@ -22,8 +23,9 @@ const {data} = Astro.props;
 // 	) as CollectionEntry<"posts">[];
 ---
 
-<div
+<!-- <div
 	class="gap-x-[1.88rem] text-sm font-medium auto-cols-fr grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-[auto] gap-y-10 grid pb-40"
->
-	{data.map((post) => <BlogPreview {post} />)}
+> -->
+<div class="text-sm font-medium auto-cols-fr grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto] grid gap-[3.13rem] pb-40">
+	{data.map((blog : any) => <RecentBlog {blog} />)}
 </div>

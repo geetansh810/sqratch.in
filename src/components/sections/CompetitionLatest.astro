@@ -4,10 +4,9 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import CompetitionPreview from "./CompetitionPreview.astro";
 import { getData } from "@/pages/api/dataFetch";
 import Link from "../primitives/Link.astro";
+import competitions from "@/data/competitions.json";
 
 const currentLocale = Astro.currentLocale;
-
-const posts = getData("competitions");
 
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../lib/firebase";
@@ -46,9 +45,9 @@ const { title, buttons } = Astro.props;
   </div>
   <div class="mt-16">
     <div
-      class="gap-x-[1.88rem] auto-cols-fr grid-cols-1 lg:grid-cols-3 grid-rows-[auto] gap-y-10 grid"
+      class="gap-x-[1.88rem] text-sm font-medium auto-cols-fr grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 grid-rows-[auto] gap-y-10 grid"
     >
-      {posts.content.map((post) => <CompetitionPreview {post} />)}
+      {competitions.slice(0, 2).map((competition) => <CompetitionPreview {competition} />)}
     </div>
     <div class="items-center flex-col text-sm font-medium flex text-white pt-10 pb-10">
         {

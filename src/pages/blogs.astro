@@ -1,13 +1,24 @@
 ---
 import PageLayout from "@/layouts/PageLayout.astro";
-import NewsSection from "@/components/sections/News.astro";
+import BlogSection from "@/components/sections/Blog.astro";
 import Container from "@/components/primitives/Container.astro"
-import { getData } from "./api/dataFetch";
+import blogs from "@/data/blogs.json";
 
-const data = getData("news");
+const blogsData = {
+    "title": "Blogs",
+    "type": "informational",
+    "lastUpdateDate": "2024-03-09",
+    "hideTitle": false,
+    "seo": {
+        "title": "Your Company Studio Blog: Insights and Updates in Web Design, Web dev and SEO",
+        "description": "Explore the Company Blog for the latest trends, tips, and insights in web design, web dev and SEO. Stay updated with our innovative digital solutions.",
+        "author": "Your Company"
+    },
+    "content": blogs
+};
 ---
-<PageLayout data={data}>  
+<PageLayout data={blogsData}>  
     <Container>
-        <NewsSection data={data?.content}/>
+        <BlogSection data={blogsData?.content}/>
     </Container>
 </PageLayout>

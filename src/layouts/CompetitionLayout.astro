@@ -7,9 +7,10 @@ import Share from "@/components/primitives/Share.astro";
 import Title from "@/components/primitives/Title.astro";
 import { defaultLocale } from "site";
 import BaseLayout from "./BaseLayout.astro";
+import { Icon } from "astro-icon/components";
 
 type Props = {
-	data:any
+	competitionData:any
 };
 
 const currentLocale = Astro.currentLocale;
@@ -36,7 +37,7 @@ const componentLocales: ComponentLocales = {
 
 const l = componentLocales[currentLocale ?? defaultLocale];
 
-const { data } = Astro.props;
+const { competitionData } = Astro.props;
 ---
 
 <BaseLayout>
@@ -44,17 +45,15 @@ const { data } = Astro.props;
 		<Container>
 			<div class="text-center">
 				{
-					"author" in data &&
-						data?.author &&
-						"pubDate" in data &&
-						data?.pubDate && (
+						competitionData?.author &&
+						competitionData?.pubDate && (
 							<div class="inline-flex items-center gap-4 pb-4 lg:pb-6">
 								<span class="text-xs font-semibold uppercase tracking-wide text-black">
 									<span>
-										{l.writtenBy} {data?.author}
+										{l.writtenBy} {competitionData?.author}
 										{l.writtenAt}
 									</span>
-									{data?.pubDate
+									{competitionData?.pubDate
 										?.toString()
 										.slice(0, 10)}
 								</span>
@@ -62,16 +61,15 @@ const { data } = Astro.props;
 						)
 				}
 
-				<Title level={1}>{data.title}</Title>
+				<Title level={1}>{competitionData?.title}</Title>
 				<p class="mx-auto max-w-2xl pt-8 text-base text-slate-500">
-					<em>{data?.description}</em>
+					<em>{competitionData?.description}</em>
 				</p>
 			</div>
 			<div class="flex w-full flex-col items-center justify-center pt-12">
 				<div class="flex flex-wrap justify-center gap-3">
 					{
-						"tags" in data &&
-							data?.tags?.map((tag: unknown) => (
+							competitionData?.tags?.map((tag: unknown) => (
 								<li class="list-none">
 									<Link
 										href={`/tags/${tag}`}
@@ -85,11 +83,11 @@ const { data } = Astro.props;
 					}
 				</div>
 				{
-					"cover" in data && data?.cover && (
+					competitionData?.cover && (
 						<Image
 							class="mt-12 w-full rounded-4xl lg:w-[60rem] lg:min-w-[50rem] lg:rounded-5xl"
-							src={data?.cover}
-							alt={`Cover image for ${data?.title}`}
+							src={competitionData?.cover || "https://placehold.co/800x600"}
+							alt={`Cover image for ${competitionData?.title}` || "Competition Cover"}
 							inferSize={true}
 						/>
 					)
@@ -99,13 +97,24 @@ const { data } = Astro.props;
 					class:list={[
 						"prose mx-auto w-full max-w-3xl pt-12 text-lg text-slate-900 prose-headings:font-normal prose-headings:tracking-tighter prose-headings:text-black prose-a:text-slate-500 hover:prose-a:text-black prose-blockquote:border-l-slate-950 prose-blockquote:text-slate-500 prose-code:text-black prose-pre:rounded-3xl prose-li:marker:text-slate-500"
 					]}>
-					<div set:html={data.htmlContent} />
+					<div set:html={competitionData.htmlContent} />
 				</div> -->
 
 				<div class="mx-auto w-full max-w-3xl pt-20">
 					<Share />
 				</div>
 			</div>
+			{
+				competitionData?.registrationStatus === "open" && (
+					<div class="fixed bottom-4 right-4 z-50 w-72 mb-5 max-w-fit rounded-lg  border-dotted shadow-lg border border-gray-200 bg-blue-primary">
+						<Link href="/register" class="mx-auto text-center text-white transition-all duration-300 hover:shadow-blue-400 animate-pulse" style="padding: 1.75rem; font-size: 1rem; color: white; border: none; border-radius: 6px; text-decoration: none;">
+							Register Now 
+							<Icon size={23} class="ms-3" name="mdi:login" />
+						</Link>
+					</div>
+				)
+			}
+			
 		</Container>
 	</section>
 </BaseLayout>

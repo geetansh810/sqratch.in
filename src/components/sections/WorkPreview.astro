@@ -53,8 +53,8 @@ const videoSrc = work.data?.video ? await loadVideo(work.data.video) : null;
 				</video>
 			) : (
 				<Image
-					src={work.data.cover}
-					alt={`Cover for ${work.data.title}`}
+					src={work.data.cover || "https://placehold.co/800x600"}
+					alt={`Cover for ${work.data.title}` || "Work Cover"}
 					class="object-cover align-middle inline-block w-full h-96 min-h-full max-w-full"
 					inferSize={true}
 				/>

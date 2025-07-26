@@ -5,10 +5,9 @@ import allPosts from "@/dummyData/postData.json";
 import RecentBlog from "./RecentBlog.astro";
 import Link from "@/components/primitives/Link.astro";
 import type { ButtonProps } from "../primitives/Button.astro";
+import blogs from "@/data/blogs.json";
 
 const currentLocale = Astro.currentLocale;
-
-const posts = await getCollection("posts");
 
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../lib/firebase";
@@ -16,20 +15,20 @@ const posts = await getCollection("posts");
 // const querySnapshot = await getDocs(collection(db, "posts"));
 // const posts = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
-const recentPosts = posts
-.map((post) => {
-const [lang, ...slug] = post.slug.split("/");
+const recentBlogs = blogs
+.map((blog) => {
+const [lang, ...slug] = blog.slug.split("/");
 return {
-...post,
+...blog,
 lang: lang,
-slug: post.slug.startsWith("/") ? post.slug : `/${post.slug}`,
+slug: blog.slug.startsWith("/") ? blog.slug : `/${blog.slug}`,
 };
 })
-.filter((post) => post.lang === currentLocale)
+.filter((blog) => blog.lang === currentLocale)
 .sort(
-(a, b) => a.data.lastUpdateDate.getTime() - b.data.lastUpdateDate.getTime()
+(a, b) => a.lastUpdateDate.getTime() - b.lastUpdateDate.getTime()
 )
-.slice(0, 4) as CollectionEntry<"posts">[];
+.slice(0, 4) as any;
 
   interface Props {
   title: string;
@@ -45,7 +44,7 @@ slug: post.slug.startsWith("/") ? post.slug : `/${post.slug}`,
     </div>
     <div class="mt-16">
       <div class="text-sm font-medium auto-cols-fr grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto] grid gap-[3.13rem]">
-        {allPosts.slice(0, 2).map((blog) => <RecentBlog {blog} />)}
+        {blogs.slice(0, 2).map((blog) => <RecentBlog {blog} />)}
       </div>
       <div class="items-center flex-col text-sm font-medium flex text-white pt-5 pb-10">
         {

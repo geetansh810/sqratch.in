@@ -7,6 +7,7 @@ import headerIt from "@/content/global/it/header.json";
 import seoIt from "@/content/global/it/seo.json";
 import style from "@/content/global/style.json";
 import widget from "@/content/global/widget.json";
+import { log } from "node_modules/astro/dist/core/logger/core";
 import { defaultLocale, locales } from "site.config";
 
 const settings: Record<string, LocalizedSettings> = {
@@ -33,12 +34,17 @@ export function getLocalizedSettings(locale?: string): LocalizedSettings {
 }
 
 export function isLocalizedUrl(url: string): boolean {
+	// Check if the URL starts with a locale that is in the locales array
+	if (!url || !url.startsWith("/")) {
+		return false;
+	}
 	const urlParts = url.split("/");
 	const firstPart = urlParts[1];
 	return locales.includes(firstPart);
 }
 
 export function unlocalizedUrl(url: string): string {
+	// If the URL is already unlocalized, return it as is	
 	if (isLocalizedUrl(url)) {
 		const urlParts = url.split("/").filter((part) => part !== "");
 		// Remove the locale part

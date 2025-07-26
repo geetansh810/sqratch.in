@@ -1,0 +1,58 @@
+[
+    {
+        "completed": true,
+        "title": "ALCHEMY Competition Results",
+        "description": "Micro Nation just announced the results of <strong>ALCHEMY: An AI Render Architecture Competition</strong>. The challenge was to demonstrate the capabilities of artificial intelligence by selecting a historic monument and transforming it through the application of AI tools, with a focus on revitalization, sustainability, social impact, and innovation associated with the monument. A substantial number of intriguing entries were submitted.",
+        "htmlContent": "<p>Micro Nation just announced the results of <strong>ALCHEMY: An AI Render Architecture Competition</strong>. The challenge was to demonstrate the capabilities of artificial intelligence by selecting a historic monument and transforming it through the application of AI tools, with a focus on revitalization, sustainability, social impact, and innovation associated with the monument. A substantial number of intriguing entries were submitted.</p>",
+        "winners1": {
+            "name": "Geetansh Agrawal",
+            "socialMedia": "geetansh.agrawal",
+            "position": "Winner"
+        },
+        "winners2": {
+            "name": "Austin Domnic",
+            "socialMedia": "austi.n_d",
+            "position": "1st runner-up"
+        },
+        "winners3": {
+            "name": "Micronation",
+            "socialMedia": "micronation_",
+            "position": "Organizer"
+        },
+        "winners4": {
+            "name": "Micronation",
+            "socialMedia": "micronation_",
+            "position": "Organizer"
+        },
+        "winners5": {
+            "name": "Micronation",
+            "socialMedia": "micronation_",
+            "position": "Organizer"
+        },
+        "bonus1": {
+            "name": "Geetansh Agrawal",
+            "socialMedia": "geetansh.agrawal",
+            "position": "Winner"
+        },
+        "bonus2": {
+            "name": "Austin Domnic",
+            "socialMedia": "austi.n_d",
+            "position": "1st runner-up"
+        },
+        "bonus3": {
+            "name": "Micronation",
+            "socialMedia": "micronation_",
+            "position": "Organizer"
+        },
+        "bonus4": {
+            "name": "Micronation",
+            "socialMedia": "micronation_",
+            "position": "Organizer"
+        },
+        "bonus5": {
+            "name": "Micronation",
+            "socialMedia": "micronation_",
+            "position": "Organizer"
+        }
+    }
+]

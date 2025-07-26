@@ -4,7 +4,7 @@ import CompetitionPreview from "@/components/sections/CompetitionPreview.astro";
 
 const currentLocale = Astro.currentLocale;
 
-const {data} = Astro.props;
+const {competitionsData} = Astro.props;
 
 // const allPosts = data
 // 	.map((post) => {
@@ -25,5 +25,5 @@ const {data} = Astro.props;
 <div
 	class="gap-x-[1.88rem] text-sm font-medium auto-cols-fr grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 grid-rows-[auto] gap-y-10 grid pb-40"
 >
-	{data.map((post) => <CompetitionPreview {post} />)}
+	{competitionsData?.map((competition: any) => <CompetitionPreview {competition} />)}
 </div>

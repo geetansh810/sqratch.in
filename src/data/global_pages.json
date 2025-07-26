@@ -1,0 +1,160 @@
+{
+    "homepage" : {
+        "title": "Homepage",
+        "subtitle": "Homepage",
+        "type": "informational",
+        "lastUpdateDate": "2024-03-09",
+        "hideTitle": true,
+        "seo": {
+            "title": "SQRATCH",
+            "description": "Company excels in creating fast, user-friendly websites with a focus on aesthetic design and SEO optimization, ensuring a standout online presence",
+            "author": "SQRATCH"
+        },
+        "hero": {
+            "title": "Design Competitions that <b><i>Detonate</i></b> the<br> Canon",
+            "subtitle": "We're a global platform empowering restless architects through immersive, rebellious challenges. Ready to scratch deeper?",
+            "buttons": [
+                {
+                    "title": "Enter INHABIT VI",
+                    "href": "/contact",
+                    "style": "button",
+                    "icon": "iconamoon:arrow-top-right-1-thin"
+                }
+            ]
+        },
+        "banner": {
+            "title": "AlCHEMY",
+            "subtitle": "Join the Revolution",
+            "description": "Unleash your creativity with SQRATCH. Participate in our design competitions and redefine architectural boundaries.",
+            "sponsorsLogos": [
+                "https://micronation.co.in/wp-content/uploads/2025/05/11-scaled.png",
+                "https://geetansh810.github.io/portfolio/_astro/profilePhoto.C83svOgN_ZFGk5J.avif",
+                "https://micronation.co.in/wp-content/uploads/2024/01/Artboard_23-removebg-preview-e1705376287958.png"
+            ],
+            "bannerLink": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
+            "cta": {
+                "text": "Learn More",
+                "href": "/contact"
+            },
+            "eventDate": "2025-08-23T21:22:06.625Z"
+        },
+        "services": {
+            "title": "We stand with <i>students, practitioners & studios</i> ready to rethink the rules of architecture, design & urban futures.<br><br> Join The Rebellion.",
+            "services": [
+                {
+                    "title": "Competitions",
+                    "description": "Each breif is a provocation - crafted to make you rethink what design can do. <br> <b>Build World.</b> <br> <b>Break rules.</b> <br> <b>Belong with rebels.</b>",
+                    "icon": "mdi:building"
+                },
+                {
+                    "title": "Education",
+                    "description": "SQRATCH Education isn't a school. <br> It's a sandbox. A subversion. A space to relearn design on your own terms.<br> Workshops. Residencies. Mentorship.<br> Peer-to-peer provocations. <br> <b> Unlearn What You Were Taught. Learn What You Were Never Told.</b>",
+                    "icon": "mdi:account-school-outline"
+                },
+                {
+                    "title": "Media",
+                    "description": "We make films, features, reels, and reads that expose the architecture behind architecture. <br> No hype. No gloss. Just the raw thoughts that shape our built world. <br> <b>Architecture isn't just what we build. It's what we believe.</b>",
+                    "icon": "mdi:folder-media-outline"
+                }
+            ]
+        }
+    },
+    "about" : {
+        "title": "About us",
+        "type": "informational",
+        "lastUpdateDate": "2024-03-09",
+        "hideTitle": false,
+        "seo": {
+            "title": "About us | [Your Company]",
+            "description": "We are a digital studio that creates beautiful and functional websites and applications.",
+            "author": "Your Company"
+        },
+        "content": {
+            "component": "About",
+            "title": "About us",
+            "subtitle": "At <span class=\"text-neutral-400\">Sqratch</span>, we provide web design, advertising, marketing, and SEO services tailored to your needs. Our goal is to help local businesses thrive with lifetime solutions that generate leads and drive growth.",
+            "content": "<br/><br/><span class=\"text-neutral-400\">We believe in unique, creative solutions and are committed to excellence and integrity. By crafting visually stunning websites, developing strategic ad campaigns, and implementing effective SEO techniques, we ensure your business stands out and achieves sustainable growth. Our team is dedicated to providing top-notch services that elevate your brand and expand your reach. Join us on a journey to transform your digital presence and achieve lasting success. Experience the [Your Company] difference and see your business grow like never before.</span>"
+        }
+    },
+    "contact" : {
+        "title": "Contact us",
+        "type": "informational",
+        "lastUpdateDate": "2024-03-09",
+        "hideTitle": false,
+        "seo": {
+            "title": "Contact Us: Get in Touch for Innovative Web Solutions",
+            "description": "Reach out to [Company] Studio for expert web design and SEO services. Connect with us to discuss your project and explore cutting-edge web solutions.",
+            "author": "Your company"
+        },
+        "content": {
+            "component": "Contact",
+            "title": "Get in touch",
+            "fields": [
+                {
+                    "title": "Full Name",
+                    "placeholder": "John Doe",
+                    "required": true,
+                    "type": "text"
+                },
+                {
+                    "title": "Email",
+                    "placeholder": "contact@email.com",
+                    "required": true,
+                    "type": "email"
+                },
+                {
+                    "title": "Phone",
+                    "placeholder": "+1 345-678",
+                    "type": "tel"
+                },
+                {
+                    "title": "Schedule to receive call",
+                    "placeholder": "10:00 AM to 4:00 PM",
+                    "type": "text"
+                },
+                {
+                    "title": "Message",
+                    "placeholder": "Type your message here",
+                    "type": "textarea",
+                    "width": 2
+                },
+                {
+                    "title": "Contact us",
+                    "type": "submit",
+                    "width": 2
+                }
+            ]
+        }
+    },
+    "footer" : {
+        "title": "Do You Have Any Questions?<br/> Don't Hesitate to Contact Us!",
+        "copyright": "© 2024 SQRATCH",
+        "buttons": [
+            {
+                "text": "Contact Us",
+                "url": "/contact"
+            }
+        ],
+        "contacts": {
+            "phone": "+1 1234567890",
+            "mail": "info@yourcompany.com",
+            "socials": [
+                {
+                    "title": "Facebook",
+                    "link": "https://facebook.com",
+                    "icon": "ic:baseline-facebook"
+                },
+                {
+                    "title": "Instagram",
+                    "link": "https://www.instagram.com/",
+                    "icon": "mdi:instagram"
+                },
+                {
+                    "title": "Youtube",
+                    "link": "https://www.youtube.com/",
+                    "icon": "mdi:youtube"
+                }
+            ]
+        }
+    }
+}

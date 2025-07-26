@@ -9,16 +9,18 @@ import { defaultLocale } from "site";
 const currentLocale = Astro.currentLocale;
 
 // interface Props {
-// 	post: CollectionEntry<"posts">;
+// 	competition?: CollectionEntry<"posts">;
 // }
 
-const { post } = Astro.props;
+const { competition } = Astro.props;
 
-const unlocalizedPath = unlocalizedUrl(post.slug);
+const unlocalizedPath = unlocalizedUrl(competition?.slug);
 const localizedPath = translatePath(
 	currentLocale ?? defaultLocale,
-	`/competitions${unlocalizedPath}`,
+	`/competition/${unlocalizedPath}`,
 );
+console.log(`Localized Path: ${localizedPath}`);
+
 ---
 
 <div>
@@ -40,24 +42,27 @@ const localizedPath = translatePath(
 			</div>
 		</div>
 		<Image
-			src={post.data.cover}
-			alt={post.data.title}
-			class="cursor-pointer align-middle inline-block w-full max-w-full rounded-t-2xl object-cover h-64"
-			inferSize={true}
+			src={competition?.cover || "https://placehold.co/800x600"}
+			alt={competition?.title || "Competition Cover"}
+			width={800}
+			height={600}
+			loading="lazy"
+			decoding="async"
+			class="cursor-pointer rounded-t-2xl object-cover w-[700px] h-[300px]"
 		/>
 	<div class="items-start flex-col p-4 flex bg-neutral-100 rounded-b-2xl">
-		<a href={localizedPath} class="text-3xl font-semibold mb-3">
-			{post.data.title}
+		<a href={localizedPath} class="text-3xl font-semibold mb-3 hover:text-blue-800 max-w-[30ch] truncate">
+			{competition?.title}
 		</a>
 		<div class="w-full mt-5 text-sm flex items-center justify-between">
 			<div
 				class="font-semibold pb-1.5 px-6 pt-2 uppercase inline-block border-2 border-black border-solid rounded-3xl"
 			>
-				{post.data.author}
+				{competition?.author}
 			</div>
 			<p class="">
 				{
-					new Date(post.data.pubDate).toLocaleDateString("en-US", {
+					new Date(competition?.pubDate).toLocaleDateString("en-US", {
 						month: "long", // full month name
 						day: "numeric", // numeric day
 						year: "numeric", // numeric year

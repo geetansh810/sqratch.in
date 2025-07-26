@@ -81,8 +81,8 @@ const videoSrc = data?.video
 						data?.cover && (
 							<Image
 								class="w-full rounded-4xl lg:w-auto lg:min-w-[50rem] lg:rounded-5xl"
-								src={data?.cover}
-								alt={`Cover image for ${data?.title}`}
+								src={data?.cover || "https://placehold.co/800x600"}
+								alt={`Cover image for ${data?.title}` || "Cover Image"}
 								inferSize={true}
 							/>
 						)

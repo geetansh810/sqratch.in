@@ -1,15 +1,26 @@
 ---
-import PostLayout from "@/layouts/PostLayout.astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import data from "@/data/blogs.json";
 import { getData } from "@/pages/api/dataFetch";
+
 type PostData = {
   htmlContent?: string;
   [key: string]: any;
 };
 
-const data = getData("post") as PostData;
+const paramString = Astro.params.slug;
+const slug = paramString ? paramString + "" : "";
+
+const blogData = data?.find((blog) => blog.slug === slug);
+
+// Redirect if blog post not found
+if (!blogData) {
+  console.error(`Blog post with slug "${slug}" not found.`);
+  return Astro.redirect("/blogs");
+}
  
 ---
 
-<PostLayout data={data}>
-	<div set:html={data?.htmlContent} />
-</PostLayout>
+<BlogLayout data={blogData}>
+	<div set:html={blogData?.htmlContent} />
+</BlogLayout>

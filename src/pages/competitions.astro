@@ -1,0 +1,62 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import CompetitionSection from "@/components/sections/Competition.astro";
+import Container from "@/components/primitives/Container.astro"
+import { getData } from "./api/dataFetch";
+import Banner from "@/components/sections/Banner.astro";
+import LiveCompetitionBanner from "@/components/sections/LiveCompetitionBanner.astro";
+import competitions from "@/data/competitions.json";
+
+const competitionsData = {
+    "title": "Competitions",
+    "type": "informational",
+    "lastUpdateDate": "2024-03-09",
+    "hideTitle": false,
+    "seo": {
+        "title": "Your Company Studio Blog: Insights and Updates in Web Design, Web dev and SEO",
+        "description": "Explore the Company Blog for the latest trends, tips, and insights in web design, web dev and SEO. Stay updated with our innovative digital solutions.",
+        "author": "Your Company"
+    },
+    "banner": {
+        "title": "AlCHEMY",
+        "subtitle": "Join the Revolution",
+        "description": "Unleash your creativity with SQRATCH. Participate in our design competitions and redefine architectural boundaries.",
+        "sponsorsLogos": [
+            "https://micronation.co.in/wp-content/uploads/2025/05/11-scaled.png",
+            "https://geetansh810.github.io/portfolio/_astro/profilePhoto.C83svOgN_ZFGk5J.avif",
+            "https://micronation.co.in/wp-content/uploads/2024/01/Artboard_23-removebg-preview-e1705376287958.png"
+        ],
+        "bannerLink": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
+        "cta": {
+            "text": "Learn More",
+            "href": "/contact"
+        },
+        "eventDate": "2025-08-23T21:22:06.625Z"
+    },
+    "content": [...competitions]
+};
+
+---
+<PageLayout data={competitionsData}>  
+    <Container>
+        <!-- <Banner
+            title={competitionsData?.banner?.title}
+            subtitle={competitionsData?.banner?.subtitle}
+            sponsorLogo = {competitionsData.banner.sponsorLogo}
+            backgroundImage = {competitionsData.banner.backgroundImage}
+            cta={{ text: competitionsData.banner.cta.text, href: competitionsData.banner.cta.href }}
+        /> -->
+        <!-- <LiveCompetitionBanner 
+            title={competitionsData?.banner?.title}
+            subtitle={competitionsData?.banner?.subtitle}
+            description={competitionsData?.banner?.description}
+            sponsorsLogos={competitionsData?.banner?.sponsorsLogos}
+            sponsorName={competitionsData?.banner?.sponsorName}
+            backgroundImage={competitionsData?.banner?.backgroundImage}
+            cta={competitionsData?.banner?.cta}
+            eventDate={competitionsData?.banner?.eventDate}
+            bannerLink={competitionsData?.banner?.bannerLink}
+            /> -->
+        <CompetitionSection competitionsData={competitionsData?.content}/>
+    </Container>
+</PageLayout>
