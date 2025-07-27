@@ -59,6 +59,34 @@
             ]
         }
     },
+    "header" : {
+        "logo": {
+            "imagePath": "/src/assets/global/navigation/logo.svg"
+        },
+        "pages": [
+            {
+                "title": "Home",
+                "link": "/"
+            },
+            {
+                "title": "About",
+                "link": "/about"
+            },
+            {
+                "title": "Competitions",
+                "link": "/competition"
+            },
+            {
+                "title": "Blogs",
+                "link": "/blogs"
+            },
+            {
+                "title": "Contacts",
+                "link": "/contact"
+            }
+        ],
+        "actions": []
+    },
     "about" : {
         "title": "About us",
         "type": "informational",

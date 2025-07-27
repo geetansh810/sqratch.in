@@ -4,7 +4,8 @@ import { getLocalizedSettings } from "@/lib/localization-helpers";
 import { translatePath, unlocalizedUrl } from "@/lib/localization-helpers";
 import { defaultLocale, locales } from "site";
 import logoImage from "@/assets/global/navigation/Sqratch_logo.svg";
-import { getData } from "@/pages/api/dataFetch";
+import pagesData from "@/data/global_pages.json";
+
 const currentLocale = Astro.currentLocale;
 
 function getTranslatedUrl(locale: string): string {
@@ -20,7 +21,7 @@ function isActiveLocale(locale: string): boolean {
 // const images = import.meta.glob<{ default: ImageMetadata }>(
 // 	"/src/assets/global/**/*.{webp,jpeg,jpg,png,gif,svg}",
 // );
-const header = getData("header");
+const header = pagesData?.header;
 ---
 
 <style>
@@ -132,7 +133,7 @@ const header = getData("header");
 
 <header class="fixed w-full z-30">
 	<div
-		class="items-center auto-cols-fr grid-cols-2 lg:grid-cols-2 grid-rows-[auto] justify-between left-0 py-3.5 px-6 lg:px-20 right-0 top-0 grid gap-4"
+		class="items-center auto-cols-fr grid-cols-2 lg:grid-cols-2 grid-rows-[auto] justify-between left-0 py-3.5 lg:px-6 lg:px-20 right-0 top-0 grid gap-4"
 		>
 		<div
 			class="items-center flex-wrap justify-start relative flex text-blue-700 z-20 frosted-text-box"

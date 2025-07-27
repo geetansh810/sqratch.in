@@ -1,6 +1,6 @@
 ---
 import WorkLayout from "@/layouts/WorkLayout.astro";
-import { getData } from "@/pages/api/dataFetch";
+import works from "@/data/works.json";
 
 type WorkData = {
   htmlContent?: string;
@@ -8,10 +8,16 @@ type WorkData = {
 };
 
 const param = Astro.params;
-console.log("Slug", param.slug)
-const data = getData("work") as WorkData;
+
+// const data = works.find((work) => {
+//   const [lang, ...slug] = work.slug.split("/");
+//   return lang === Astro.currentLocale && slug.join("/") === param.slug;
+// });
+
+const data = works[0];
+
 ---
 
 <WorkLayout data={data}>
-  <div set:html={data.htmlContent} />
+  <div set:html={data?.data?.htmlContent} />
 </WorkLayout>

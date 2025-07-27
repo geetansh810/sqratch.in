@@ -3,12 +3,22 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import type { ButtonProps } from "@/components/primitives/Button.astro";
 import Link from "@/components/primitives/Link.astro";
 import WorkPreview from "@/components/sections/WorkPreview.astro";
-import { getData } from "@/pages/api/dataFetch";
-// import allWork from "@/dummyData/workData.json";
+import works from "@/data/works.json";
 
 const currentLocale = Astro.currentLocale;
 
-const data = getData("works");
+const data = {
+  "title": "Works",
+  "type": "informational",
+  "lastUpdateDate": "2024-03-09",
+  "hideTitle": false,
+  "seo": {
+    "title": "Your Company Studio Portfolio: Web Design and Web Development Projects",
+    "description": "Explore the Your Company Studio portfolio to see our web design and web development projects. Admire the innovative solutions and creative excellence we provide to our clients.",
+    "author": "Your Company"
+  },
+  "content": works
+};
 
 // const recentWorks = works
 // 	.map((work) => {

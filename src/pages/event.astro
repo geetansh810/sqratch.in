@@ -3,9 +3,111 @@ import "@/styles/event.css";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import NewsSection from "@/components/sections/News.astro";
 import Container from "@/components/primitives/Container.astro"
-import { getData } from "./api/dataFetch";
 
-const data = getData("competitions");
+const data = {
+    "title": "Competitions",
+    "type": "informational",
+    "lastUpdateDate": "2024-03-09",
+    "hideTitle": false,
+    "seo": {
+        "title": "Your Company Studio Blog: Insights and Updates in Web Design, Web dev and SEO",
+        "description": "Explore the Company Blog for the latest trends, tips, and insights in web design, web dev and SEO. Stay updated with our innovative digital solutions.",
+        "author": "Your Company"
+    },
+    "banner": {
+        "title": "AlCHEMY",
+        "subtitle": "Join the Revolution",
+        "description": "Unleash your creativity with SQRATCH. Participate in our design competitions and redefine architectural boundaries.",
+        "sponsorsLogos": [
+            "https://micronation.co.in/wp-content/uploads/2025/05/11-scaled.png",
+            "https://geetansh810.github.io/portfolio/_astro/profilePhoto.C83svOgN_ZFGk5J.avif",
+            "https://micronation.co.in/wp-content/uploads/2024/01/Artboard_23-removebg-preview-e1705376287958.png"
+        ],
+        "bannerLink": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
+        "cta": {
+            "text": "Learn More",
+            "href": "/contact"
+        },
+        "eventDate": "2025-08-23T21:22:06.625Z"
+    },
+    "content": [
+        {
+            "id": "123456",
+            "render()": "Render['.md']",
+            "slug": "/alchemy",
+            "body": "",
+            "collection": "works",
+            "rendered": "RenderedContent",
+            "filePath": "",
+            "data": {
+                "slug": "Alchemy",
+                "title": "Alchemy",
+                "description": "Discover proven strategies to create engaging email marketing campaigns that drive sales and customer loyalty in the e-commerce space.",
+                "category": "Digital Marketing",
+                "author": "Micronation",
+                "cover": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
+                "tags": [
+                    "Email Marketing",
+                    "E-commerce",
+                    "Customer Engagement"
+                ],
+                "pubDate": "2024-03-09",
+                "lastUpdateDate": "2024-03-09",
+                "hidden": false
+            }
+        },
+        {
+            "id": "12342699",
+            "render()": "Render['.md']",
+            "slug": "/nexacore",
+            "body": "",
+            "collection": "works",
+            "rendered": "RenderedContent",
+            "filePath": "",
+            "data": {
+                "slug": "nexacore",
+                "title": "Mastering Architecture",
+                "description": "Discover proven strategies to create engaging email marketing campaigns that drive sales and customer loyalty in the e-commerce space.",
+                "category": "Digital Marketing",
+                "author": "Austin Dominic",
+                "cover": "https://images.unsplash.com/photo-1737129854548-d7b2ed39997c?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "tags": [
+                    "Email Marketing",
+                    "E-commerce",
+                    "Customer Engagement"
+                ],
+                "pubDate": "2024-01-01",
+                "lastUpdateDate": "2024-03-09",
+                "hidden": false
+            }
+        },
+        {
+            "id": "12345449",
+            "render()": "Render['.md']",
+            "slug": "/nexacore",
+            "body": "",
+            "collection": "works",
+            "rendered": "RenderedContent",
+            "filePath": "",
+            "data": {
+                "slug": "nexacore",
+                "title": "Modern Cities",
+                "description": "Discover proven strategies to create engaging email marketing campaigns that drive sales and customer loyalty in the e-commerce space.",
+                "category": "Digital Marketing",
+                "author": "MP Tourism",
+                "cover": "https://images.unsplash.com/photo-1737192579368-d81c7a468166?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "tags": [
+                    "Email Marketing",
+                    "E-commerce",
+                    "Customer Engagement"
+                ],
+                "pubDate": "2024-01-01",
+                "lastUpdateDate": "2024-03-09",
+                "hidden": false
+            }
+        }
+    ]
+};
 ---
 
 <script is:browser type="module">

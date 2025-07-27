@@ -3,11 +3,11 @@ import { getCollection } from "astro:content";
 import Container from "@/components/primitives/Container.astro";
 import Link from "@/components/primitives/Link.astro";
 import { translatePath, unlocalizedUrl } from "@/lib/localization-helpers";
-import { getData } from "@/pages/api/dataFetch";
+import pagesData from "@/data/global_pages.json";
 
 const currentLocale = Astro.currentLocale;
 
-const data = getData("footer");
+const data = pagesData?.footer;
 
 function getTranslatedUrl(locale: string): string {
 	const unlocalizedPath = unlocalizedUrl(Astro.url.pathname);
@@ -155,10 +155,10 @@ const lastBlogs = blogs
 		<div class="items-center flex-col w-full">
 			<div class="items-center flex-col justify-center flex text-white">
 				<h3
-					class="text-4xl lg:text-6xl leading-normal text-center max-w-4xl"
+					class="text-lg lg:text-6xl leading-normal text-center max-w-4xl"
 					set:html={data.title}
 				/>
-				<div class="mt-8">
+				<div class="lg:mt-8">
 					{
 						data?.buttons?.map(({ text, url }) => (
 							<Link
@@ -174,7 +174,7 @@ const lastBlogs = blogs
 				</div>
 			</div>
 			<div
-				class="auto-cols-fr grid-cols-1 lg:grid-cols-[1.8fr_.4fr_1fr] grid-rows-[auto] grid mt-16 gap-10"
+				class="auto-cols-fr grid-cols-1 lg:grid-cols-[1.8fr_.4fr_1fr] grid-rows-[auto] grid mt-2 lg:mt-16 gap-10"
 			>
 				<div class="col-span-1 row-span-1">
 					<div

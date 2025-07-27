@@ -2,7 +2,6 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 // import allPosts from "@/dummyData/postData.json";
 import CompetitionPreview from "./CompetitionPreview.astro";
-import { getData } from "@/pages/api/dataFetch";
 import Link from "../primitives/Link.astro";
 import competitions from "@/data/competitions.json";
 
@@ -39,7 +38,7 @@ const { title, buttons } = Astro.props;
 
 <div class="text-sm font-medium pt-0 pb-32">
   <div
-    class="items-center justify-center flex text-[3.13rem] leading-none font-semibold"
+    class="items-center justify-center flex text-center text-[2rem] lg:text-[3.13rem] leading-none font-semibold"
   >
     <h2 class="my-1 text-blue-primary">{title}</h2>
   </div>

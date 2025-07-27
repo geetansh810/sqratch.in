@@ -28,7 +28,7 @@ const { testimonial, name } = Astro.props;
 </style>
 
 <div class="text-sm font-medium pt-20 pb-14 frame-border my-10">
-	<div class="bg-black flex-grow py-10 px-16">
+	<div class="bg-black flex-grow py-4 lg:py-10 px-4 lg:px-16">
 		<div class="items-center flex-col justify-center text-center flex">
 			{companyLogo && (
 				<Image
@@ -37,8 +37,8 @@ const { testimonial, name } = Astro.props;
 					class="object-contain align-middle inline-block w-full h-24 max-w-[8.13rem] mb-8"
 				/>
 			)}
-			<h2 class="text-white text-4xl mb-4">"{name}"</h2>
-			<h2 class="text-white leading-9 text-2xl mb-1">
+			<h2 class="text-white lg:text-4xl mb-4">"{name}"</h2>
+			<h2 class="text-white lg:leading-9 lg:text-2xl mb-1">
 				"{testimonial}"
 			</h2>
 			<div class="bg-white/[0.9] w-12 h-0 my-4 m-auto mx-auto"></div>

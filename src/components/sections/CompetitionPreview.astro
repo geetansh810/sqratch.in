@@ -48,10 +48,10 @@ console.log(`Localized Path: ${localizedPath}`);
 			height={600}
 			loading="lazy"
 			decoding="async"
-			class="cursor-pointer rounded-t-2xl object-cover w-[700px] h-[300px]"
+			class="cursor-pointer rounded-t-2xl object-cover w-full lg:w-[700px] lg:h-[300px]"
 		/>
 	<div class="items-start flex-col p-4 flex bg-neutral-100 rounded-b-2xl">
-		<a href={localizedPath} class="text-3xl font-semibold mb-3 hover:text-blue-800 max-w-[30ch] truncate">
+		<a href={localizedPath} class="text-lg lg:text-3xl font-semibold mb-3 hover:text-blue-800 lg:max-w-[30ch] lg:truncate">
 			{competition?.title}
 		</a>
 		<div class="w-full mt-5 text-sm flex items-center justify-between">

@@ -51,14 +51,14 @@ const videoSrc = blog.data?.video ? await loadVideo(blog.data.video) : null;
 				<Image
 					src={blog.cover || "https://placehold.co/800x600"}
 					alt={`Cover for ${blog.title}` || "Blog Cover"}
-					class="object-cover align-middle inline-block w-full h-96 min-h-full max-w-full"
+					class="object-cover align-middle inline-block w-full lg:h-96 min-h-full max-w-full"
 					inferSize={true}
 				/>
 			)
 		}
 	</a>
 	<div class="mt-5">
-		<div class="items-center justify-between flex flex-row gap-4">
+		<div class="items-center justify-between flex lg:flex-row flex-col gap-4">
 			<a
 				href={localizedPath}
 				class="menu-item relative items-start flex-col flex max-w-full"

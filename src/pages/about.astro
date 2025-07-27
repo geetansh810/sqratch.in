@@ -2,9 +2,8 @@
 import PageLayout from "@/layouts/PageLayout.astro";
 import AboutSection from "@/components/sections/About.astro";
 import Container from "@/components/primitives/Container.astro"
-import { getData } from "./api/dataFetch";
 import { getAboutData } from "../lib/appwrite/client";
-
+import pagesData from "@/data/global_pages.json";
 
 type AboutPageData = {
   content?: {
@@ -14,9 +13,9 @@ type AboutPageData = {
   };
 };
 
-const data = getData("about") as Partial<AboutPageData>;
+const data = pagesData?.about;
 
-  try {
+try {
   await getAboutData()
 } catch (error) {
   console.log(error);

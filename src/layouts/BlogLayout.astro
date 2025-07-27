@@ -42,6 +42,26 @@ const l = componentLocales[currentLocale ?? defaultLocale];
 const { data } = Astro.props;
 ---
 
+<style>
+.newsletter-close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2.3rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 5%;
+  margin-top: 2%;
+  z-index: 2;
+}
+.newsletter-div.hidden {
+  display: none;
+}
+
+</style>
+
 <BaseLayout>
 	<section class="py-32 md:py-56">
 		<Container>
@@ -52,7 +72,7 @@ const { data } = Astro.props;
 				<div class="inline-flex items-center gap-4 pb-4 lg:pb-6">
 					<span class="text-xs font-semibold uppercase tracking-wide text-black">
 						<span>
-							{l.writtenBy} {data?.author}
+							{l.writtenBy} {data?.author?.name}
 							{l.writtenAt}
 						</span>
 						{data?.pubDate
@@ -176,9 +196,21 @@ const { data } = Astro.props;
 				<Share />
 			</div>
 			</div>
-			<div class="fixed bottom-4 right-4 z-50 w-82 max-w-fit p-4 rounded-lg shadow-lg border border-gray-200 bg-blue-primary">
+			<div id="newsletter-div" class="fixed bottom-4 right-4 z-50 w-82 max-w-fit p-4 rounded-lg shadow-lg border border-gray-200 bg-blue-primary">
+				<button class="newsletter-close-btn" aria-label="Close newsletter form">&times;</button>
 				<Newsletter />
 			</div>
 		</Container>
 	</section>
 </BaseLayout>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const closeBtn = document.querySelector(".newsletter-close-btn");
+    const container = document.querySelector("#newsletter-div");
+    if (closeBtn && container) {
+      closeBtn.addEventListener("click", () => {
+        container.classList.add("hidden");
+      });
+    }
+  });
+</script>

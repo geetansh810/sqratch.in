@@ -2,9 +2,8 @@
 import PageLayout from "@/layouts/PageLayout.astro";
 import ContactSection from "@/components/sections/Contact.astro";
 import Container from "@/components/primitives/Container.astro"
-import { getData } from "./api/dataFetch";
-
-const data = getData("contact");
+import pagesData from "@/data/global_pages.json";
+const data = pagesData?.contact;
 ---
 <PageLayout data={data}>  
     <Container>

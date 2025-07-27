@@ -7,10 +7,10 @@ import Testimonial from "@/components/sections/Testimonial.astro";
 import BlogLatest from "@/components/sections/BlogLatest.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
 
-import { getData } from "./api/dataFetch";
 import CompetitionLatest from "@/components/sections/CompetitionLatest.astro";
 import Banner from "@/components/sections/Banner.astro";
 import LiveCompetitionBanner from "@/components/sections/LiveCompetitionBanner.astro";
+import pagesData from "@/data/global_pages.json";
 
 type HomepageData = {
   hero?: {
@@ -33,7 +33,7 @@ type HomepageData = {
   };
 };
 
-const data = getData("homepage") as Partial<HomepageData>;
+const data = pagesData?.homepage;
 
 ---
 <PageLayout data={data}>

@@ -2,13 +2,24 @@
 import PageLayout from "@/layouts/PageLayout.astro";
 import WorksSection from "@/components/sections/Works.astro";
 import Container from "@/components/primitives/Container.astro"
-import { getData } from "./api/dataFetch";
+import works from "@/data/works.json";
 
 type WorksPageData = {
   content?: []; // Replace `any` with a more specific type if available
 };
 
-const data = getData("works") as WorksPageData;
+const data = {
+  "title": "Works",
+  "type": "informational",
+  "lastUpdateDate": "2024-03-09",
+  "hideTitle": false,
+  "seo": {
+    "title": "Your Company Studio Portfolio: Web Design and Web Development Projects",
+    "description": "Explore the Your Company Studio portfolio to see our web design and web development projects. Admire the innovative solutions and creative excellence we provide to our clients.",
+    "author": "Your Company"
+  },
+  "content": works
+};
 ---
 <PageLayout data={data}>  
     <Container>
