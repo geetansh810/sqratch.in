@@ -33,9 +33,9 @@ if (!competitionData) {
 <CompetitionLayout competitionData={competitionData}>
   <div class="flex justify-center gap-10">
 
-    {competitionData?.briefDocuments?.docs?.length > 0 && (
+    {competitionData?.briefDocuments?.length > 0 && ( 
     <>
-      {competitionData.briefDocuments.docs.map((doc, idx) => (
+      {competitionData.briefDocuments.map((doc, idx) => (
       <Link class="flex gap-3 bg-yellow-600 no-underline " href={doc.link} target="_blank" size="md" style="outline"
         key={idx}>
       <Icon class="text-white" size={22} name="ic:outline-download" />
@@ -56,55 +56,59 @@ if (!competitionData) {
   </div>
 
   <div set:html={competitionData?.htmlContent} />
-  <div
-    style="max-width: 800px; margin: 2rem auto; padding: 1rem 2rem; font-family: 'Segoe UI', sans-serif; background: linear-gradient(145deg, #f3f4f6, #ffffff); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); color: #1f2937;">
-    <h2 style="font-size: 2rem; color: #111827; margin-bottom: 0.5rem;">🏆 {competitionData?.result?.title}</h2>
-    <p style="color: #4b5563; margin-bottom: 1.5rem;">
-      {competitionData?.result?.description}
-    </p>
 
-    <div
-      style="background-color: #f9fafb; padding: 1rem; border-left: 4px solid #3b82f6; border-radius: 8px; margin-bottom: 1rem;">
-      <h3 style="margin: 0; font-size: 1.25rem; color: #111827;">🏅 Winners</h3>
-      <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
-        {
-        competitionData?.result?.winners?.map((winner) => {
-        return (<li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">
-          <strong>{winner.name}</strong> ~ {winner.position}<br />
-          <a href={"www.instagram.com/" + winner.socialMedia} target="_blank">
-            <span style="color: #6b7280;">@{winner.socialMedia}</span>
-          </a>
-        </li>)
+  {
+    competitionData?.result && competitionData?.result.length > 0 && (
+      <div class="mt-10 mx-auto flex justify-center flex-col items-center gap-4">
+        
+        <h2 class="text-2xl font-bold text-center mb-4">🏆 RESULTS ARE OUT !!!</h2>
+        <Link href={`/result/${competitionData?.result}`} size="lg" style="button">
+          View Results
+          <Icon name="ic:outline-arrow-forward" class="ms-5" size={24} />
+        </Link>
+      </div>
+    )
+  }
+
+  <!-- Jury Section -->
+  <div style="max-width: 900px; margin: auto; padding: 2rem; font-family: 'Segoe UI', sans-serif;">
+    <h2 style="font-size: 1.75rem; color: #111827; margin-bottom: 1.5rem; text-align: center;">🤝 Jury</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+      {
+        competitionData?.juryMembers.map((jury) => {
+          return (
+            <a href={jury?.website} target="_blank" style="text-decoration: none; color: inherit;">
+              <div
+                style="width: 180px; background: #f9fafb; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1rem; text-align: center;">
+                <img src={jury?.logo} alt="..."
+                  style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; display: block; margin: 0 auto 0.5rem;" />
+                <h3 style="font-size: 1rem; margin: 0;">{jury?.name}</h3>
+                <a href={jury?.socialMedia} target="_blank"
+                  style="font-size: 0.75rem; color: #3b82f6;">@{jury?.name}</a>
+              </div>
+            </a>);
         })
-        }
-      </ul>
+      }
     </div>
-
-    <p style="font-size: 0.875rem; color: #9ca3af;">✨ Congratulations to all participants for your innovative
-      submissions!</p>
   </div>
-
-
   <!-- Sponsors Section -->
-  <div style="max-width: 900px; margin: 3rem auto; padding: 2rem; font-family: 'Segoe UI', sans-serif;">
+  <div style="max-width: 900px; margin: auto; padding: 2rem; font-family: 'Segoe UI', sans-serif;">
     <h2 style="font-size: 1.75rem; color: #111827; margin-bottom: 1.5rem; text-align: center;">🤝 Organisers</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
       {
-      competitionData?.sponsores.map((organiser) => {
-      return (
-      <a href={organiser.website} target="_blank" style="text-decoration: none; color: inherit;">
-        <div
-          style="width: 180px; background: #f9fafb; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1rem; text-align: center;">
-          <img src={organiser.logo} alt="..."
-            style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; display: block; margin: 0 auto 0.5rem;" />
-          <h3 style="font-size: 1rem; margin: 0;">{organiser.name}</h3>
-          <a href={organiser.socialMedia} target="_blank"
-            style="font-size: 0.75rem; color: #3b82f6;">@{organiser.name}</a>
-        </div>
-      </a>
-
-      )
-      })
+        competitionData?.sponsores.map((organiser) => {
+          return (
+            <a href={organiser.website} target="_blank" style="text-decoration: none; color: inherit;">
+              <div
+                style="width: 180px; background: #f9fafb; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1rem; text-align: center;">
+                <img src={organiser.logo} alt="..."
+                  style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; display: block; margin: 0 auto 0.5rem;" />
+                <h3 style="font-size: 1rem; margin: 0;">{organiser.name}</h3>
+                <a href={organiser.socialMedia} target="_blank"
+                  style="font-size: 0.75rem; color: #3b82f6;">@{organiser.name}</a>
+              </div>
+            </a>);
+        })
       }
     </div>
   </div>
