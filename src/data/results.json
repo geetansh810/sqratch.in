@@ -4,7 +4,7 @@
         "title": "ALCHEMY Competition Results",
         "slug": "alchemy-competition-results",
         "date": "2023-10-01",
-        "image": "https://example.com/images/alchemy-competition.jpg",
+        "image": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
         "imageAlt": "ALCHEMY Competition Results",
         "imageCaption": "ALCHEMY Competition Results",
         "imageCredit": "Photo by John Doe on Unsplash",
@@ -16,63 +16,65 @@
         "category": "Competitions",
         "description": "Micro Nation just announced the results of <strong>ALCHEMY: An AI Render Architecture Competition</strong>. The challenge was to demonstrate the capabilities of artificial intelligence by selecting a historic monument and transforming it through the application of AI tools, with a focus on revitalization, sustainability, social impact, and innovation associated with the monument. A substantial number of intriguing entries were submitted.",
         "htmlContent": "<p>Micro Nation just announced the results of <strong>ALCHEMY: An AI Render Architecture Competition</strong>. The challenge was to demonstrate the capabilities of artificial intelligence by selecting a historic monument and transforming it through the application of AI tools, with a focus on revitalization, sustainability, social impact, and innovation associated with the monument. A substantial number of intriguing entries were submitted.</p>",
-        "winners1": {
+        "winner1": {
+            "id": "winner-1",
             "position": "Winner",
-            "name": "Geetansh Agrawal",
-            "description": "Geetansh Agrawal, a talented architect, won the competition with his innovative design that reimagined the historic monument using AI tools. His work focused on sustainability and social impact, showcasing the potential of AI in architecture.  He has a strong presence on social media, where he shares his architectural insights and projects.",
-            "instagram": "https://instagram.com/geetansh.agrawal",
-            "profileImage": "https://example.com/images/geetansh-agrawal.jpg",
-            "profileImageAlt": "Geetansh Agrawal",
-            "profileImageCaption": "Geetansh Agrawal, Winner of ALCHEMY Competition",
-            "entryImage": "https://example.com/images/geetansh-entry.jpg",
-            "entryImageAlt": "Geetansh Agrawal's Winning Entry",
-            "entryImageCaption": "Geetansh Agrawal's Winning Entry in ALCHEMY Competition",
-            "entryLink": "https://example.com/geetansh-entry"
+            "name": "Abdelrahman ElKhashab, Fatma El Azazy & Farheeen Ahmed",
+            "location": "Giza, Egypt",
+            "projectTitle": "Philae Temple Reimagined",
+            "description": "An interactive museum that integrates holographic walls and 3D artifacts, honoring historical architecture with futuristic design.",
+            "image": "https://micronation.co.in/wp-content/uploads/2024/09/MNC-134.jpg",
+            "instagram": "https://instagram.com/abdelrahman.elkhashab"
         },
-        "winners2": {
-            "name": "Austin Domnic",
-            "socialMedia": "austi.n_d",
-            "position": "1st runner-up"
+        "winner2": {
+            "id": "runnerup-1",
+            "position": "1st Runner-Up",
+            "name": "Rm. Swetharanyam & P Nivedhana",
+            "location": "Madurai, India",
+            "projectTitle": "Urban Mosaic",
+            "description": "A redesign of Victory Gate using Dravidian patterns and kolam-style lighting to create a cultural urban space.",
+            "image": "https://micronation.co.in/wp-content/uploads/2024/09/MNC-109.jpg",
+            "instagram": "https://instagram.com/swetharanyam"
         },
-        "winners3": {
-            "name": "Micronation",
-            "socialMedia": "micronation_",
-            "position": "Organizer"
+        "winner3": {
+            "id": "runnerup-2",
+            "position": "2nd Runner-Up",
+            "name": "Dharam",
+            "location": "Madurai, India",
+            "projectTitle": "Colosseo Verde",
+            "description": "A hybrid public-commercial green space inspired by the Colosseum with retractable floor systems.",
+            "image": "https://micronation.co.in/wp-content/uploads/2024/09/MNC-148.jpg",
+            "instagram": "https://instagram.com/dharam_designs"
         },
-        "winners4": {
-            "name": "Micronation",
-            "socialMedia": "micronation_",
-            "position": "Organizer"
+        "honorableMention1": {
+            "id": "mention-1",
+            "name": "Shreeja Nair",
+            "location": "Mumbai",
+            "instagram": "https://instagram.com/shreejanair"
         },
-        "winners5": {
-            "name": "Micronation",
-            "socialMedia": "micronation_",
-            "position": "Organizer"
+        "honorableMention2": {
+            "id": "mention-2",
+            "name": "Allen Porras",
+            "location": "Cavite, Philippines",
+            "instagram": "https://instagram.com/allenporras"
         },
-        "bonus1": {
-            "name": "Geetansh Agrawal",
-            "socialMedia": "geetansh.agrawal",
-            "position": "Winner"
+        "honorableMention3": {
+            "id": "mention-3",
+            "name": "Vaibhav Aggarwal & Halley Okasa",
+            "location": "New Delhi",
+            "instagram": null
         },
-        "bonus2": {
-            "name": "Austin Domnic",
-            "socialMedia": "austi.n_d",
-            "position": "1st runner-up"
+        "honorableMention4": {
+            "id": "mention-4",
+            "name": "Sanskar R. M. Khatri",
+            "location": "Mumbai",
+            "instagram": "https://instagram.com/sanskar.rmk"
         },
-        "bonus3": {
-            "name": "Micronation",
-            "socialMedia": "micronation_",
-            "position": "Organizer"
-        },
-        "bonus4": {
-            "name": "Micronation",
-            "socialMedia": "micronation_",
-            "position": "Organizer"
-        },
-        "bonus5": {
-            "name": "Micronation",
-            "socialMedia": "micronation_",
-            "position": "Organizer"
+        "honorableMention5": {
+            "id": "mention-5",
+            "name": "Snehadeep Das",
+            "location": "Bhubaneswar",
+            "instagram": "https://instagram.com/snehadeepdas"
         }
     }
 ]

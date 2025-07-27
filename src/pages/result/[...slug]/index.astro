@@ -15,47 +15,182 @@ if (!resultData) {
 }
 
 const data = {
-    title: "Page Title",
-    subtitle: "Page Subtitle",
+    title: "Results",
+    subtitle: "Competition Results",
     seo: {
-        title: "SEO Title",
-        description: "SEO Description",
+        title: "Competition Results",
+        description: "Explore the results of our latest competition.",
     },
     resultData: resultData,    
 };
 
 ---
+
 <PageLayout data={data}>
     <Container>
-        <h1>{resultData?.title}</h1>
-        <p>{resultData?.description}</p>
-          <!-- <div
-            style="max-width: 800px; margin: 2rem auto; padding: 1rem 2rem; font-family: 'Segoe UI', sans-serif; background: linear-gradient(145deg, #f3f4f6, #ffffff); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); color: #1f2937;">
-            <h2 style="font-size: 2rem; color: #111827; margin-bottom: 0.5rem;">🏆 {competitionData?.result?.title}</h2>
-            <p style="color: #4b5563; margin-bottom: 1.5rem;">
-            {competitionData?.result?.description}
-            </p>
+        <h1 class="text-4xl font-bold text-center text-gray-800 dark:text-white my-8">{resultData?.title}</h1>
+        <section class="space-y-12 mb-20">
+                <div class="">
+                  <img class="w-full max-h-[700px] object-cover rounded-md" src={data?.resultData?.image} alt={data?.resultData?.name} />
+                  <p class="text-3xl font-bold mt-10">{data?.resultData?.title}</p>
+                  <p class="text-lg mt-2">{data?.resultData?.category}</p>
+                  <p class="text-sm mt-1">{data?.resultData?.date}</p>
+                  <div class="prose max-w-none mt-6 " set:html={resultData?.description} />
 
-    <div
-      style="background-color: #f9fafb; padding: 1rem; border-left: 4px solid #3b82f6; border-radius: 8px; margin-bottom: 1rem;">
-      <h3 style="margin: 0; font-size: 1.25rem; color: #111827;">🏅 Winners</h3>
-      <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
-        {
-        competitionData?.result?.winners?.map((winner) => {
-        return (<li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">
-          <strong>{winner.name}</strong> ~ {winner.position}<br />
-          <a href={"www.instagram.com/" + winner.socialMedia} target="_blank">
-            <span style="color: #6b7280;">@{winner.socialMedia}</span>
-          </a>
-        </li>)
-        })
-        }
-      </ul>
-    </div>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    {data?.resultData?.tags.map(tag => (
+                        <span class="bg-gray-100 border border-gray-300 text-sm px-3 py-1 rounded-full " key={tag}>{tag}</span>
+                    ))}
+                </div>
 
-    <p style="font-size: 0.875rem; color: #9ca3af;">✨ Congratulations to all participants for your innovative
-      submissions!</p>
-  </div> -->
+                </div>
 
+
+            <div class="winner mt-8">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">winner</h2>
+                {
+                    resultData?.winner1 && (
+                        <div class="winner bg-white border border-gray-200 p-6 rounded-lg shadow-sm space-y-4 mb-6 relative">
+                            <div class="flex justify-between items-start">
+                              <h3 class="text-xl font-bold text-blue-primary">{resultData.winner1.name}</h3>
+                              <span class="inline-block bg-gray-100 border border-gray-300 text-xs font-medium text-gray-800 px-2 py-1 rounded-full">{resultData.winner1.id}</span>
+                            </div>
+                            <p class="text-sm ">{resultData.winner1.location}</p>
+                            <p class=" ">{resultData.winner1.description}</p>
+                            <a href={resultData.winner1.instagram} target="_blank" class="inline-flex items-center gap-2 bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors">
+                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zm0 1.5a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5zm5.5-.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z"/>
+                              </svg>
+                              Instagram
+                            </a>
+                            <img class="rounded-md w-full max-h-[700px] object-cover" src={resultData.winner1.image} alt={resultData.winner1.name} />
+                        </div>
+                    )
+                }
+                {
+                    resultData?.winner2 && (
+                        <div class="winner bg-white border border-gray-200 p-6 rounded-lg shadow-sm space-y-4 mb-6 relative">
+                            <div class="flex justify-between items-start">
+                              <h3 class="text-xl font-bold text-blue-primary">{resultData.winner2.name}</h3>
+                              <span class="inline-block bg-gray-100 border border-gray-300 text-xs font-medium text-gray-800 px-2 py-1 rounded-full">{resultData.winner2.id}</span>
+                            </div>
+                            <p class="text-sm ">{resultData.winner2.location}</p>
+                            <p class=" ">{resultData.winner2.description}</p>
+                            <a href={resultData.winner2.instagram} target="_blank" class="inline-flex items-center gap-2 bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors">
+                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zm0 1.5a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5zm5.5-.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z"/>
+                              </svg>
+                              Instagram
+                            </a>
+                            <img class="rounded-md w-full max-h-[700px] object-cover" src={resultData.winner2.image} alt={resultData.winner2.name} />
+                        </div>
+                    )
+                }
+                {
+                    resultData?.winner3 && (
+                        <div class="winner bg-white border border-gray-200 p-6 rounded-lg shadow-sm space-y-4 mb-6 relative">
+                            <div class="flex justify-between items-start">
+                              <h3 class="text-xl font-bold text-blue-primary">{resultData.winner3.name}</h3>
+                              <span class="inline-block bg-gray-100 border border-gray-300 text-xs font-medium text-gray-800 px-2 py-1 rounded-full">{resultData.winner3.id}</span>
+                            </div>
+                            <p class="text-sm ">{resultData.winner3.location}</p>
+                            <p class=" ">{resultData.winner3.description}</p>
+                            <a href={resultData.winner3.instagram} target="_blank" class="inline-flex items-center gap-2 bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors">
+                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zm0 1.5a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5zm5.5-.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z"/>
+                              </svg>
+                              Instagram
+                            </a>
+                            <img class="rounded-md w-full max-h-[700px] object-cover" src={resultData.winner3.image} alt={resultData.winner3.name} />
+                        </div>
+                    )
+                }
+                {
+                    resultData?.winner4 && (
+                        <div class="winner bg-white border border-gray-200 p-6 rounded-lg shadow-sm space-y-4 mb-6 relative">
+                            <div class="flex justify-between items-start">
+                              <h3 class="text-xl font-bold text-blue-primary">{resultData.winner4.name}</h3>
+                              <span class="inline-block bg-gray-100 border border-gray-300 text-xs font-medium text-gray-800 px-2 py-1 rounded-full">{resultData.winner4.id}</span>
+                            </div>
+                            <p class="text-sm ">{resultData.winner4.location}</p>
+                            <p class=" ">{resultData.winner4.description}</p>
+                            <a href={resultData.winner4.instagram} target="_blank" class="inline-flex items-center gap-2 bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors">
+                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zm0 1.5a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5zm5.5-.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z"/>
+                              </svg>
+                              Instagram
+                            </a>
+                            <img class="rounded-md w-full max-h-[700px] object-cover" src={resultData.winner4.image} alt={resultData.winner4.name} />
+                        </div>
+                    )
+                }
+                {
+                    resultData?.winner5 && (
+                        <div class="winner bg-white border border-gray-200 p-6 rounded-lg shadow-sm space-y-4 mb-6 relative">
+                            <div class="flex justify-between items-start">
+                              <h3 class="text-xl font-bold text-blue-primary">{resultData.winner5.name}</h3>
+                              <span class="inline-block bg-gray-100 border border-gray-300 text-xs font-medium text-gray-800 px-2 py-1 rounded-full">{resultData.winner5.id}</span>
+                            </div>
+                            <p class="text-sm ">{resultData.winner5.location}</p>
+                            <p class=" ">{resultData.winner5.description}</p>
+                            <a href={resultData.winner5.instagram} target="_blank" class="inline-flex items-center gap-2 bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors">
+                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zm0 1.5a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5zm5.5-.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z"/>
+                              </svg>
+                              Instagram
+                            </a>
+                            <img class="rounded-md w-full max-h-[700px] object-cover" src={resultData.winner5.image} alt={resultData.winner5.name} />
+                        </div>
+                    )
+                }
+            </div>
+            <div class="mt-12 mb-12">
+              <h2 class="text-2xl font-semibold text-gray-800 mb-4">Honorable Mentions</h2>
+              <div class="overflow-x-auto w-full">
+                <table class="min-w-full table-auto bg-white border border-gray-200 text-sm sm:text-base">
+                  <thead class="hidden sm:table-header-group bg-blue-200">
+                    <tr>
+                      <th class="px-4 py-2 text-left font-medium text-gray-700 whitespace-normal break-words">ID</th>
+                      <th class="px-4 py-2 text-left font-medium text-gray-700 whitespace-normal break-words">Name</th>
+                      <th class="px-4 py-2 text-left font-medium text-gray-700 whitespace-normal break-words">Location</th>
+                      <th class="px-4 py-2 text-left font-medium text-gray-700 whitespace-normal break-words">Instagram</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-100">
+                    {
+                      [1, 2, 3, 4, 5].map(index => {
+                        const mention = resultData[`honorableMention${index}`];
+                        return mention && (
+                          <tr key={mention.id} class="block sm:table-row w-full sm:w-auto odd:bg-gray-50">
+                            <td class="block sm:table-cell px-4 py-2 text-gray-700">
+                              <span class="sm:hidden font-semibold">ID: </span>{mention.id}
+                            </td>
+                            <td class="block sm:table-cell px-4 py-2 text-blue-primary">
+                              {mention.name}
+                            </td>
+                            <td class="block sm:table-cell px-4 py-0 text-gray-700">
+                              <span class="sm:hidden font-semibold">Location: </span>{mention.location}
+                            </td>
+                            <td class="block sm:table-cell px-4 py-2">
+                              <a href={mention.instagram} target="_blank" class="inline-flex items-center gap-2 bg-pink-500 text-white px-3 py-1.5 rounded-full hover:bg-pink-600 transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zm0 1.5a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5zm5.5-.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z"/>
+                                </svg>
+                                Instagram
+                              </a>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- <div class="additional-info mt-8">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Additional Information</h2>
+                <div set:html={resultData?.htmlContent} />
+            </div> -->
+        </section>
     </Container>
 </PageLayout>
