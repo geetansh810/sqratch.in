@@ -3,7 +3,7 @@
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Raleway:300);
- form.newsletter {
+ /* form.newsletter {
 	 width: 100%;
 	 margin: 1% auto;
 	 text-align: center;
@@ -13,22 +13,28 @@
 	 content: "Enter your email and click on subscribe";
 	 color: #BBBBBB;
 	 font-size: 12px;
+} */
+ .newsletter-form:after {
+	 content: "Enter your email and click on subscribe";
+	 color: #BBBBBB;
+	 font-size: 12px;
+	}
+.newsletter-form{
+	padding: 1% 0 0 10px;	
 }
- .newsletter label {
+ .newsletter-form label {
 	 color: #FFFFFF;
-	 font-size: 18px;
 	 display: table-cell;
 	 vertical-align: bottom;
-	 width: 400px;
-	 height: 30px;
+	 padding-bottom: 2%;
 }
- .newsletter label:before {
+ .newsletter-form label:before {
 	 content: "\f1d8";
 	 font-family: fontAwesome;
 	 margin-right: 10px;
 	 color: #FFFFFF;
 }
- .newsletter input {
+ /* .newsletter input {
 	 height: 50px;
 	 line-height: 50px;
 	 padding: 0 20px;
@@ -96,9 +102,13 @@
 }
  input:-webkit-autofill {
 	 -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
-}
+} */
 @media screen and (max-width: 600px) {
-	 form.newsletter {
+	 .newsletter-form:after {
+	 content: "";
+	}
+
+	 /* form.newsletter {
 		 width: 90%;
 		 margin: 1% auto;
 		 text-align: center;
@@ -125,15 +135,34 @@
 		 background-color: #0055cd;
 		 color: #FFFFFF;
 		 cursor: pointer;
-	 }
+	 } */
 		 
 }
 </style>
 
-<div class="newsletter-container">
+<!-- <div class="newsletter-container">
   <form class="newsletter" >
     <label for="email">Subscribe to our NewsLetter</label>
     <input type="email" value="" name="email" placeholder="john@sqratch.com" required>
     <input type="submit" value="Subscribe" name="subscribe">
   </form>
-</div>
+</div> -->
+
+<aside class="fixed z-10 flex items-start justify-center p-2 pl-4 text-white bg-blue-primary rounded-lg bottom-0 lg:bottom-4 lg:right-4">
+
+    <div class="newsletter-form max-w-xl mx-auto">
+        <label for="input-9" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Subscribe to our NewsLetter</label>
+        <div class="flex items-center mt-1">
+            <input type="email" id="input-9" class="w-full h-10 px-3 text-sm text-gray-700 border border-r-0 rounded-r-none border-blue-500 focus:outline-none rounded shadow-sm" placeholder="user@mail.com"/>
+            <button class="h-10 px-4 text-sm bg-blue-primary border border-l-0 border-blue-500 rounded-r shadow-sm text-blue-50 hover:text-white hover:bg-blue-400 hover:border-blue-400 focus:outline-none">Subscribe</button>
+        </div>
+    </div>
+
+    <button onClick="return this.parentNode.remove()" class="p-2 ml-3 rounded  hover:bg-white/10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd" />
+        </svg>
+    </button>
+</aside>
