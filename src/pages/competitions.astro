@@ -5,6 +5,9 @@ import Container from "@/components/primitives/Container.astro"
 import Banner from "@/components/sections/Banner.astro";
 import LiveCompetitionBanner from "@/components/sections/LiveCompetitionBanner.astro";
 import competitions from "@/data/competitions.json";
+import { getAllCompetitions } from "@/lib/appwrite/client";
+
+const allCompetitions = await getAllCompetitions();
 
 const competitionsData = {
     "title": "Competitions",
@@ -22,7 +25,7 @@ const competitionsData = {
         "description": "Unleash your creativity with SQRATCH. Participate in our design competitions and redefine architectural boundaries.",
         "sponsorsLogos": [
             "https://micronation.co.in/wp-content/uploads/2025/05/11-scaled.png",
-            "https://geetansh810.github.io/portfolio/_astro/profilePhoto.C83svOgN_ZFGk5J.avif",
+            "https://media.licdn.com/dms/image/v2/D5603AQGdaYhdtIr1jQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1726160192342?e=1756944000&v=beta&t=4xOhMxGOCEzI6suWaYcpstEcZfxMqt7f4jaVRAPSd0k",
             "https://micronation.co.in/wp-content/uploads/2024/01/Artboard_23-removebg-preview-e1705376287958.png"
         ],
         "bannerLink": "https://micronation.co.in/wp-content/uploads/2024/09/BANNER-2-NEW.jpg",
@@ -32,7 +35,7 @@ const competitionsData = {
         },
         "eventDate": "2025-08-23T21:22:06.625Z"
     },
-    "content": [...competitions]
+    "content": [...allCompetitions?.documents]
 };
 
 ---

@@ -4,9 +4,10 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import CompetitionPreview from "./CompetitionPreview.astro";
 import Link from "../primitives/Link.astro";
 import competitions from "@/data/competitions.json";
+import { getAllCompetitions } from "@/lib/appwrite/client";
 
 const currentLocale = Astro.currentLocale;
-
+const allCompetitions = await getAllCompetitions();
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../lib/firebase";
 
@@ -46,7 +47,7 @@ const { title, buttons } = Astro.props;
     <div
       class="gap-x-[1.88rem] text-sm font-medium auto-cols-fr grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 grid-rows-[auto] gap-y-10 grid"
     >
-      {competitions.slice(0, 2).map((competition) => <CompetitionPreview {competition} />)}
+      {allCompetitions?.documents?.slice(0, 2).map((competition) => <CompetitionPreview {competition} />)}
     </div>
     <div class="items-center flex-col text-sm font-medium flex text-white pt-10 pb-10">
         {

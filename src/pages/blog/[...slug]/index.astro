@@ -1,6 +1,7 @@
 ---
 import BlogLayout from "@/layouts/BlogLayout.astro";
 import data from "@/data/blogs.json";
+import { getBlogData } from "@/lib/appwrite/client";
 
 type PostData = {
   htmlContent?: string;
@@ -10,7 +11,18 @@ type PostData = {
 const paramString = Astro.params.slug;
 const slug = paramString ? paramString + "" : "";
 
-const blogData = data?.find((blog) => blog.slug === slug);
+// const blogData = data?.find((blog) => blog.slug === slug);
+let blogData;
+
+try{
+  const blogDataFetched = await getBlogData(slug);
+  // console.log(compData);
+  blogData = blogDataFetched.documents[0] || null;
+}catch{
+  blogData = null;
+  // Handle the error or log it
+  console.error(`Error fetching competition data for slug "${slug}"`);
+}
 
 // Redirect if blog post not found
 if (!blogData) {

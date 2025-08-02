@@ -6,8 +6,10 @@ import RecentBlog from "./RecentBlog.astro";
 import Link from "@/components/primitives/Link.astro";
 import type { ButtonProps } from "../primitives/Button.astro";
 import blogs from "@/data/blogs.json";
+import { getAllBlogs } from "@/lib/appwrite/client";
 
 const currentLocale = Astro.currentLocale;
+const allBlogs = await getAllBlogs()
 
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../lib/firebase";
@@ -44,7 +46,7 @@ slug: blog.slug.startsWith("/") ? blog.slug : `/${blog.slug}`,
     </div>
     <div class="mt-16">
       <div class="text-sm font-medium auto-cols-fr grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto] grid gap-[3.13rem]">
-        {blogs.slice(0, 2).map((blog) => <RecentBlog {blog} />)}
+        {allBlogs?.documents?.slice(0, 2).map((blog) => <RecentBlog {blog} />)}
       </div>
       <div class="items-center flex-col text-sm font-medium flex text-white pt-5 pb-10">
         {

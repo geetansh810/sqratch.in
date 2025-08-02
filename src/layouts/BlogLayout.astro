@@ -94,8 +94,8 @@ const { data } = Astro.props;
 					"tags" in data &&
 					data?.tags?.map((tag: unknown) => (
 					<li class="list-none">
-						<Link href={`/tags/${tag}`} size="md" style="outline">
-						{tag}
+						<Link href={`/tags/${tag?.title}`} size="md" style="outline">
+						{tag?.title}
 						</Link>
 					</li>
 					))

@@ -50,7 +50,7 @@ const { competitionData } = Astro.props;
 							<div class="inline-flex items-center gap-4 pb-4 lg:pb-6">
 								<span class="text-xs font-semibold uppercase tracking-wide text-black">
 									<span>
-										{l.writtenBy} {competitionData?.author}
+										{l.writtenBy} {competitionData?.author?.name}
 										{l.writtenAt}
 									</span>
 									{competitionData?.pubDate
@@ -72,11 +72,11 @@ const { competitionData } = Astro.props;
 							competitionData?.tags?.map((tag: unknown) => (
 								<li class="list-none">
 									<Link
-										href={`/tags/${tag}`}
+										href={`/tags/${tag?.title}`}
 										size="md"
 										style="outline"
 									>
-										{tag}
+										{tag?.title}
 									</Link>
 								</li>
 							))

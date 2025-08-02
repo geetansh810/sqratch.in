@@ -4,11 +4,23 @@ import Link from "@/components/primitives/Link.astro";
 import CompetitionLayout from "@/layouts/CompetitionLayout.astro";
 import { Icon } from "astro-icon/components";
 import data from "@/data/competitions.json";
+import { getCompetitionData } from "@/lib/appwrite/client";
 
 const paramString = Astro.params.slug;
 const slug = paramString ? paramString + "" : "";
 
-const competitionData = data?.find((comp) => comp.slug === slug);
+// const competitionData = data?.find((comp) => comp.slug === slug);
+let competitionData;
+
+try{
+  const compData = await getCompetitionData(slug);
+  // console.log(compData);
+  competitionData = compData.documents[0] || {};
+}catch{
+  competitionData = null;
+  // Handle the error or log it
+  console.error(`Error fetching competition data for slug "${slug}"`);
+}
 
 //redirect if competition not found
 if (!competitionData) {
@@ -75,7 +87,7 @@ if (!competitionData) {
     <h2 style="font-size: 1.75rem; color: #111827; margin-bottom: 1.5rem; text-align: center;">🤝 Jury</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
       {
-        competitionData?.juryMembers.map((jury) => {
+        competitionData?.juryMembers && competitionData?.juryMembers.map((jury) => {
           return (
             <a href={jury?.website} target="_blank" style="text-decoration: none; color: inherit;">
               <div
@@ -96,7 +108,7 @@ if (!competitionData) {
     <h2 style="font-size: 1.75rem; color: #111827; margin-bottom: 1.5rem; text-align: center;">🤝 Organisers</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
       {
-        competitionData?.sponsors.map((organiser) => {
+        competitionData?.sponsors && competitionData?.sponsors.map((organiser) => {
           return (
             <a href={organiser.website} target="_blank" style="text-decoration: none; color: inherit;">
               <div

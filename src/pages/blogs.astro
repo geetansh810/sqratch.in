@@ -3,6 +3,9 @@ import PageLayout from "@/layouts/PageLayout.astro";
 import BlogSection from "@/components/sections/Blog.astro";
 import Container from "@/components/primitives/Container.astro"
 import blogs from "@/data/blogs.json";
+import { getAllBlogs } from "@/lib/appwrite/client";
+
+const allBlogs = await getAllBlogs()
 
 const blogsData = {
     "title": "Blogs",
@@ -14,7 +17,7 @@ const blogsData = {
         "description": "Explore the Company Blog for the latest trends, tips, and insights in web design, web dev and SEO. Stay updated with our innovative digital solutions.",
         "author": "Your Company"
     },
-    "content": blogs
+    "content": allBlogs?.documents
 };
 ---
 <PageLayout data={blogsData}>  

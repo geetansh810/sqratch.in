@@ -71,7 +71,7 @@ const videoSrc = blog.data?.video ? await loadVideo(blog.data.video) : null;
 				</div>
 			</a>
 			<p class="text-neutral-400 text-lg">
-				{Array.from(blog.tags).join(", ")}
+				{blog.tags?.length > 0 ? blog.tags.map(tag => tag?.title).join(", ") : "No tags"}
 				<br>
 				<span
 					class="text-neutral-500 text-base italic">
